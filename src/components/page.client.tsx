@@ -11,6 +11,7 @@ import Presentacion from './presentacion'
 import MarqueeHtml from './marquee'
 import Travels from './Travels';
 
+import profile from '../assets/profile.jpg'
 
 
 const DashedLineContainer = ({ children }: { children: React.ReactNode }) => {
@@ -719,12 +720,13 @@ const AboutMe = () => {
                                     "--framer-font-weight": "500",
                                     "--framer-text-alignment": "left",
                                     "--framer-text-color": "var(--token-a2d601b2-39bf-470a-bb5f-61bc109d99fd, rgba(255, 255, 255, 0.9))",
-                                  }}
-                                  className="framer-text"
+                                  } as React.CSSProperties}
+                                  className="framer-text open-sans"
                               >
-                                  <span style={{ display: "inline-block", opacity: 1, transform: "none", willChange: "transform" }}>More</span> <span style={{ display: "inline-block", opacity: 1, transform: "none", willChange: "transform" }}>about</span>
+                                  <span  style={{ display: "inline-block", opacity: 1, transform: "none", willChange: "transform" }}>More</span> <span style={{ display: "inline-block", opacity: 1, transform: "none", willChange: "transform" }}>about</span>
                                   <span style={{ "--font-selector": "SW50ZXItU2VtaUJvbGQ=", "--framer-font-weight": "600", "--framer-text-color": "rgb(255, 255, 255)" }} className="framer-text">
-                                      <span style={{ display: "inline-block", opacity: 1, transform: "none", willChange: "transform" }}></span> <span style={{ display: "inline-block", opacity: 1, transform: "none", willChange: "transform" }}></span>
+                                      <span style={{ display: "inline-block", opacity: 1, transform: "none", willChange: "transform" }}></span>
+                                       <span style={{ display: "inline-block", opacity: 1, transform: "none", willChange: "transform" }}></span>
                                   </span>
                                   <span
                                       style={{
@@ -738,7 +740,9 @@ const AboutMe = () => {
                                   >
                                       <span style={{ display: "inline-block", opacity: 1, transform: "none", willChange: "transform" }}>myself</span>
                                   </span>
+                                  
                               </h2>
+                               
                           </div>
                       </div>
                       <div
@@ -754,11 +758,58 @@ const AboutMe = () => {
                           }}
                           data-framer-component-type="RichTextContainer"
                       >
-                          <p className="framer-text framer-styles-preset-1kvyxmc" data-styles-preset="n7RLEGRKm">
+                          <p className="framer-text framer-styles-preset-1kvyxmc open-sans" data-styles-preset="n7RLEGRKm">
                               <span style={{ display: "inline-block", opacity: 1, transform: "none", willChange: "transform" }}>Hi, i am josbert i am web developer frontend and creative enginer desing</span> 
                              
                           </p>
+
+
+
                       </div>
+                      <span className="text-sm open-sans"  style={{ display: "inline-block", opacity: 1, transform: "none", willChange: "transform" }}>
+                          <h3 className="text-base">🎨 Frontend & UI/UX</h3>
+                          <ul 
+                          className="mt-2 l !list-disc ml-5 pl-5 framer-text open-sans !text-sm"
+                          style={{
+                            listStyleType: "disc",
+                            "--framer-text-color": "var(--token-f195ea74-7512-4096-8d91-0e7c7e10d0ab, rgba(255, 255, 255, 0.6))"
+                          }as React.CSSProperties }>
+                              <li>Expertise in React.js, Next.js, Vue.js, TailwindCSS</li>
+                              <li>UI/UX Design with Figma, Adobe XD, Design Systems</li>
+                              <li>Framer Motion & GSAP for animations and microinteractions</li>
+                              <li>Accessibility (a11y) & performance optimization</li>
+                          </ul>
+                      </span>
+                      <span className="text-sm open-sans"  style={{ display: "inline-block", opacity: 1, transform: "none", willChange: "transform" }}>
+                          <h3 className="text-base">💻 Fullstack Development</h3>
+                          <ul 
+                          className="mt-2 l !list-disc ml-5 pl-5 framer-text open-sans !text-sm"
+                          style={{
+                            listStyleType: "disc",
+                            "--framer-text-color": "var(--token-f195ea74-7512-4096-8d91-0e7c7e10d0ab, rgba(255, 255, 255, 0.6))"
+                          }as React.CSSProperties }>
+                              
+                              
+                              
+                              <li> Proficient in JavaScript, TypeScript, Node.js, Express.js, NestJS</li>
+                              <li> API Development with REST & GraphQL, authentication, and security best practices</li>
+                              <li>Database expertise: MongoDB, PostgreSQL, Firebase </li>
+                              <li>Serverless & Cloud: AWS, Vercel, Supabase</li>
+                          </ul>
+                      </span>
+                      <span className="text-sm open-sans"  style={{ display: "inline-block", opacity: 1, transform: "none", willChange: "transform" }}>
+                          <h3 className="text-base">⚙️ Backend & DevOps</h3>
+                          <ul 
+                          className="mt-2 l !list-disc ml-5 pl-5 framer-text open-sans !text-sm"
+                          style={{
+                            listStyleType: "disc",
+                            "--framer-text-color": "var(--token-f195ea74-7512-4096-8d91-0e7c7e10d0ab, rgba(255, 255, 255, 0.6))"
+                          }as React.CSSProperties }>
+                              <li>Scalable API architecture & microservices</li>
+                              <li>CI/CD pipelines, Docker, and Kubernetes</li>
+                              <li>Caching, performance tuning & database optimization</li>
+                          </ul>
+                      </span>
                   </div>
                   <div className="framer-6iz3g2-container mt-8">
                       <div className="ssr-variant hidden-upi8ji">
@@ -804,7 +855,7 @@ const AboutMe = () => {
                                   <div className="framer-69mjuu" data-framer-name="thumbnail" style={{ filter: "brightness(1)", borderRadius: "16px", transform: "none", transformOrigin: "50% 50% 0px", willChange: "transform" }}>
                                       <div style={{ position: "absolute", borderRadius: "inherit", top: 0, right: 0, bottom: 0, left: 0 }} data-framer-background-image-wrapper="true">
                                           <img
-                                            src="https://framerusercontent.com/images/2tsEoalKV0gW67C7KEF0opYwC4U.jpg?scale-down-to=1024"
+                                            src={profile}
                                             style={{
                                               display: "block",
                                               width: "100%",

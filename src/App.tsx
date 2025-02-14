@@ -29,13 +29,16 @@ function App() {
   return (
     <>
       <div className="relative isolate flex min-h-screen flex-col bg-ln-gray-25 ">
+       
+          <div className="pt-10 absolute top-0 left-0 h-screen w-full">
+            <AsteroidMotion />
+          </div>
+       
         <HeaderUser />
         <LineAbsolute />
         
 
-        <div className="pt-10 absolute top-0 left-0 h-full w-full">
-          <AsteroidMotion />
-        </div>
+        
 
         <HeroSection />
 

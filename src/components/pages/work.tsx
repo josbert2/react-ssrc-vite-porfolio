@@ -301,7 +301,7 @@ export default function Work() {
                         transition={{ duration: 0.5, ease: [0.17, 0.55, 0.55, 1] }}
                     >
                         <div className="framer-1u3alye"></div>
-                       <ButtonSection title="Proyectos" />
+                       <ButtonSection title="Works" />
                        <div className="framer-4ek1z5"></div>
                     </motion.div>
                  

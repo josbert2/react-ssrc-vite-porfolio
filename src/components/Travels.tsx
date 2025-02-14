@@ -27,7 +27,7 @@ export default function NalaImage() {
                       width={1536}
                       height={2048}
                       className="absolute inset-0 h-full w-full object-cover"
-                      src="/images/nala.jpg"
+                      src="../public/nala.jpg"
                       style={{ color: "transparent" }}
                     />
                 </div>
@@ -40,7 +40,7 @@ export default function NalaImage() {
                       width={1536}
                       height={2048}
                       className="absolute inset-0 h-full w-full object-cover"
-                      src="/images/image-5 (1).webp"
+                      src="../public/image-5 (1).webp"
                       style={{ color: "transparent" }}
                     />
                 </div>
@@ -54,7 +54,7 @@ export default function NalaImage() {
                       width={3024}
                     height={4032}
                       className="absolute inset-0 h-full w-full object-cover"
-                      src="/images/image-4.jpg"
+                      src="../public/image-4.jpg"
                       style={{ color: "transparent" }}
                     />
                 </div>
@@ -68,7 +68,7 @@ export default function NalaImage() {
                       width={3024}
                     height={4032}
                       className="absolute inset-0 h-full w-full object-cover"
-                      src="/images/iamge-5.png"
+                      src="../public/iamge-5.png"
                       style={{ color: "transparent" }}
                     />
                 </div>

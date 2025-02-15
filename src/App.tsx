@@ -70,7 +70,7 @@ function App() {
           </div>
         </div>
 
-        <div className="container pointer-events-none !px-0 mx-0  select-none mac:block">
+        <div className="container !px-0 mx-0 mac:block">
           <BackgroundPaths/>
         </div>
 

@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Rrss from './rrss'
 
 
 
@@ -93,7 +93,8 @@ const presentacionTwo = () => {
                     </span>
                     </p>
                 </div>
-                </div>
+            </div>
+            <Rrss />
 
         </>
     )   

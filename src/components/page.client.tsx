@@ -409,9 +409,9 @@ const HeaderUser = () => {
                 </div>
                 <motion.nav 
                   initial="hidden" 
-                  animate="visible"
+                  animate={!scrolled ? {  left: '0' } : { left: '50%' }}
                   variants={containerVariants}
-                  className="hidden justify-center items-center gap-2.5 lg:flex absolute top-2/4 transform -translate-y-2/4  right-0">
+                  className="hidden justify-center items-center gap-2.5 lg:flex absolute top-2/4 transform -translate-y-2/4 ">
               
                   <motion.button className=" relative
                   inline-flex h-10 items-center justify-center gap-3.5 whitespace-nowrap rounded-10
@@ -622,7 +622,7 @@ const HeroSection = () => {
                     </svg>
                 </div>
                 
-                <svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-6">
+                <svg fill="none"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-6">
                   <path stroke="#434343" stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                   <path stroke="#434343"  stroke-linecap="round" stroke-linejoin="round" d="M9 9.563C9 9.252 9.252 9 9.563 9h4.874c.311 0 .563.252.563.563v4.874c0 .311-.252.563-.563.563H9.564A.562.562 0 0 1 9 14.437V9.564Z" />
                 </svg>

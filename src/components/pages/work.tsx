@@ -657,69 +657,22 @@ export default function Work() {
 
                     {itemsToShow < dataProject.length && (
                         <div className="text-center justify-center mt-8">
-                            <a
-                                className="framer-859uep framer-1ex4s6v"
-                                data-framer-name="With left icon"
-                                data-reset="button"
-                                onClick={handleLoadMore}
-                                rel="noopener"
-                               
-                                target="_blank">
-                                <div
-                                    className="framer-fxtd3v-container"
-                                    style={{
-                                    opacity: "1",
-                                    }}>
-                                    <div
-                                    style={{
-                                        display: "contents",
-                                    }}>
-                                    <svg
-                                        fill="none"
-                                        height="24"
-                                        stroke='var(--token-c220c2af-a046-4217-9e0d-c6c77afa9a2a, rgb(255, 255, 255)) /* {"name":"Text-Light"} */'
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        style={{
-                                        height: "100%",
-                                        width: "100%",
-                                        }}
-                                        viewBox="0 0 24 24"
-                                        width="24"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="9" cy="21" r="1" />
-                                        <circle cx="20" cy="21" r="1" />
-                                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-                                    </svg>
-                                    </div>
-                                </div>
-                                <div
-                                    className="framer-90hi5l"
-                                    data-framer-component-type="RichTextContainer"
-                                    style={{
-                                    "--extracted-r6o4lv": "rgb(255, 255, 255)",
-                                    "--framer-paragraph-spacing": "0px",
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    flexShrink: "0",
-                                    justifyContent: "flex-start",
-                                    opacity: "1",
-                                    outline: "none",
-                                    transform: "none",
-                                    }}>
-                                    <p
-                                    className="framer-text"
-                                    style={{
-                                  
-                                        "--framer-font-size": "14px",
-                                        "--framer-font-weight": "600",
-                                        "--framer-text-color": "var(--extracted-r6o4lv, rgb(255, 255, 255))",
-                                    }}>
+                            <button
+                                className="bg-ln-gray-header uppercase shadow-ln-xs px-12 py-3 overflow-hidden  rounded-full uppercase open-sans font-bold text-[14px] relative" 
+                                 onClick={handleLoadMore}>
+                                
                                         Cargar más
-                                    </p>
-                                </div>
-                                </a>
+                                   
+                                    <motion.div
+                                        className="absolute z-[9999] h-[1.5px] w-[50%] left-2/4 transform -translate-x-2/4 inset-x-1 top-[.3px] -bottom-px bg-gradient-to-r from-[#EDD4BA]/0 via-[#EDD4BA]/40 to-[#EDD4BA]/0"
+                                        style={{ top: "auto", bottom: "0px" }}
+                                        initial={{ opacity: 0, width: "0%" }}
+                                        animate={{ opacity: 1, width: "50%" }}
+                                        exit={{ opacity: 0, width: "0%" }}
+                                        transition={{ duration: 3.2, ease: "easeInOut" }}
+                                    />
+                               
+                                </button>
 
                      
                         </div>

@@ -285,7 +285,7 @@ export function BackgroundPaths() {
                       >
                           <span
                           data-text-fill="true"
-                          className="framer-text"
+                          className="framer-text text-looking"
                           style={{
                               backgroundImage:
                               "radial-gradient(60% 200% at 50% 50%, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 100%)",

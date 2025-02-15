@@ -9,6 +9,7 @@ import {
   UserTravels,
   AboutMe
 } from "./components/page.client"
+import { useIsMobile } from "./hooks/use-mobile"
 
 
 // @components
@@ -42,9 +43,18 @@ function App() {
 
         <HeroSection />
 
-        <div className=" container pointer-events-none mt-[225px] ">
+        <div className=" container pointer-events-none mt-[200px] md:mt-[225px] ">
           <div className="">
-            <StarField />   
+            {!useIsMobile() ? (
+              <>
+                 <StarField />   
+              </>
+            ) : (
+              <>
+              
+              </>
+            )}
+           
             <CornedEarth />
           </div>
         </div>

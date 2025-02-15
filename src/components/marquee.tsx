@@ -19,14 +19,7 @@ const tools = [
     "name": "Tool2",
     "imgSrc": "https://framerusercontent.com/images/YWcP2W5U3RNsyQzTRoW9XnBSL4Q.png"
   },
-  {
-    "id": 3,
-    "label": "Icon",
-    "wrapperClass": "framer-1traebw",
-    "dataFramerName": "Tool3",
-    "name": "Tool3",
-    "imgSrc": "https://framerusercontent.com/images/uTqJRvTpxtFFq0ScpK5XjPLbSk.png"
-  },
+ 
   {
     "id": 4,
     "label": "Icon",
@@ -91,14 +84,7 @@ const tools = [
     "name": "Tool2",
     "imgSrc": "https://framerusercontent.com/images/YWcP2W5U3RNsyQzTRoW9XnBSL4Q.png"
   },
-  {
-    "id": 3,
-    "label": "Icon",
-    "wrapperClass": "framer-1traebw",
-    "dataFramerName": "Tool3",
-    "name": "Tool3",
-    "imgSrc": "https://framerusercontent.com/images/uTqJRvTpxtFFq0ScpK5XjPLbSk.png"
-  },
+  
   {
     "id": 4,
     "label": "Icon",
@@ -163,14 +149,7 @@ const tools = [
     "name": "Tool2",
     "imgSrc": "https://framerusercontent.com/images/YWcP2W5U3RNsyQzTRoW9XnBSL4Q.png"
   },
-  {
-    "id": 3,
-    "label": "Icon",
-    "wrapperClass": "framer-1traebw",
-    "dataFramerName": "Tool3",
-    "name": "Tool3",
-    "imgSrc": "https://framerusercontent.com/images/uTqJRvTpxtFFq0ScpK5XjPLbSk.png"
-  },
+
   {
     "id": 4,
     "label": "Icon",

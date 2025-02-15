@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 
 import { motion, useAnimation } from "motion/react"
 import { cn } from "../lib/cn"
+import { UseMobile } from "../lib/utils"
 import { useIsMobile } from "../hooks/use-mobile"
 import { DotPattern } from "./dot-pattern";
 import Presentacion from './presentacion'
@@ -566,20 +567,27 @@ const HeaderUser = () => {
 const HeroSection = () => {
   return (
     <>
-      <div className="flex flex-col items-center text-center px-40 xl:px-72 py-32 z-[100]">
+      <div className="flex flex-col items-center text-center px-10 xl:px-72 py-32 z-[100]">
         <DashedLineContainer>
-          <VerticalDashedLine
-            className="md:-left-10"
-            width="calc(100% + 80px)"
-            mobileWidth="100%"
-          />
-          <div className="z-[-10] ">
-            <DotPattern
-              className={cn(
-                "[mask-image:radial-gradient(235px_circle_at_center,white,transparent)] top-[-104px]",
-              )}
-            />
-          </div>
+          {!useIsMobile() ? (
+              <>
+                <VerticalDashedLine
+                  className="md:-left-10"
+                  width="calc(100% + 80px)"
+                  mobileWidth="100%"
+                />
+                <div className="z-[-10] ">
+                  <DotPattern
+                    className={cn(
+                      "[mask-image:radial-gradient(235px_circle_at_center,white,transparent)] top-[-104px]",
+                    )}
+                  />
+                </div>
+              </>
+
+          ) : (<></>)}
+          
+          
           
           <motion.div
             className="flex justify-center py-4 rounded-lg mt-6"
@@ -654,20 +662,22 @@ const HeroSection = () => {
       
 
           
-
-          <VerticalDashedLine />
-
-          <HorizontalDashedLine
-            className="-top-14"
-            height="calc(100% + 112px)"
-            side="left"
-          />
-          <HorizontalDashedLine
-            className="-top-14"
-            height="calc(100% + 112px)"
-            side="right"
-          />
-          <DashedCircle className="-top-12 -left-12" />
+            {!useIsMobile() ? (
+              <>
+                <VerticalDashedLine />
+                <HorizontalDashedLine
+                  className="-top-14"
+                  height="calc(100% + 112px)"
+                  side="left"
+                />
+                <HorizontalDashedLine
+                  className="-top-14"
+                  height="calc(100% + 112px)"
+                  side="right"
+                />
+                <DashedCircle className="-top-12 -left-12" />
+              </>
+          ) : (<></>)}
           
           <div className="h-full w-full absolute top-0 right-0 overflow-hidden z-[-10]">
             <div className="w-full h-full flex justify-end">
@@ -685,7 +695,7 @@ const UserTravels = () => {
   return (
     <>
       <div className="">
-          <div className="mt-16 sm:mt-20 relative">
+          <div className="mt-6 sm:mt-20 relative">
             <div className="absolute top-[35px] w-full h-[57px] bg-[#1a1a1d]">
             
             </div>

@@ -292,8 +292,8 @@ export default function Work() {
 
     return (
         <>
-            <section ref={ref} className="container mt-20 pb-20 relative  sm:mt-20">
-                <div className="px-20">
+            <section ref={ref} className="container md:px-0 mt-20 pb-20 relative  sm:mt-20">
+                <div className="px-10 md:px-20">
                     <motion.div
                         className="btn-title relative w-full mb-16 flex justify-start container-btn"
                         initial={{ opacity: 0, x: -20 }}

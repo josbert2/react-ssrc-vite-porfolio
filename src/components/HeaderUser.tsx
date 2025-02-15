@@ -1,12 +1,13 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
-
+import { useIsMobile } from "../hooks/use-mobile"
 
 export default function HeaderUser() {
 
   const easeOutQuint = [0.23, 1, 0.32, 1];
-
+  const widthMobileHeader = !useIsMobile() ? '50%' : '100%'
+  const yMobileHeader = !useIsMobile() ? "20px" : '0'
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
@@ -24,7 +25,7 @@ export default function HeaderUser() {
     <motion.div
       className="fixed top-[20px]  left-0 !transform tranform-x-2/4 z-[9999] flex w-full items-center justify-center gap-8 bg-ln-gray-900 lg:bg-transparent"
       initial={{ y: 0 }}
-      animate={scrolled ? { y: -20, top: 0   } : { y: 0, top: "20px"  }} // Baja el header 40px si se cumple la condición
+      animate={scrolled ? { y: -20, top: 0   } : { y: 0, top: yMobileHeader  }} // Baja el header 40px si se cumple la condición
       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1],   delay: 0.1, }} // Transición suave
     >
            
@@ -48,7 +49,7 @@ export default function HeaderUser() {
             </div> */}
             <motion.header 
               className="relative backdrop-blur-lg z-10 flex h-10 w-full items-center !py-[35px] justify-between  rounded-t-2xl bg-ln-gray-25 px-4  lg:justify-start lg:rounded-3xl bg-ln-gray-header  lg:shadow-ln-xs"
-              animate={scrolled ? { width: "100%", borderRadius: '0' } : {  width: '50%', borderRadius: '16px' }} // Baja el header 40px si se cumple la condición
+              animate={scrolled ? { width: "100%", borderRadius: '0' } : {  width: widthMobileHeader, borderRadius: '16px' }} // Baja el header 40px si se cumple la condición
               transition={{ duration: 0.6, ease: easeOutQuint,   delay: 0.1, }} // Transición suave
             >
               <motion.div
@@ -65,7 +66,7 @@ export default function HeaderUser() {
                 </a>
                
               </div>
-              <nav className="hidden justify-center items-center gap-2.5 lg:flex absolute top-2/4 transform -translate-y-2/4  right-0">
+              <nav className="flex justify-center items-center gap-2.5 lg:flex absolute top-2/4 transform -translate-y-2/4  right-0">
             
                 <button className=" relative
                  inline-flex h-10 items-center justify-center gap-3.5 whitespace-nowrap rounded-10

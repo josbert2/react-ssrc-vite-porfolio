@@ -1968,6 +1968,26 @@ body{
   
 }
 
+@media (max-width: 768px) {
+  .framer-1lrue9j{
+    grid-template-columns: repeat(1, minmax(200px, 1fr));
+    grid-template-rows: repeat(3, min-content); 
+  }
+  .framer-1augxt8{
+    margin-top: 20px !important;
+    width:100% !important;
+  }
+  .framer-ejjo2t{
+    width: 100% !important
+  }
+
+  .text-looking{
+    font-size: 65px;
+    line-height: 83px;
+
+  }
+}
+
 .framer-1hhlnuq-container {
   align-self: start;
   flex: none;

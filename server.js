@@ -1,69 +1,66 @@
-  import fs from 'node:fs/promises'
-  import express from 'express'
+// server.js (CommonJS o sin top-level await)
 
-  // Constants
-  const isProduction = process.env.NODE_ENV === 'production'
-  const port = process.env.PORT || 5173
-  const base = process.env.BASE || '/'
+// Imports
+import fs from 'node:fs/promises'
+import express from 'express'
+import path from 'node:path'
 
-  // Cached production assets
-  const templateHtml = isProduction
-    ? await fs.readFile('./dist/client/index.html', 'utf-8')
-    : ''
+const isProduction = process.env.NODE_ENV === 'production'
+let templateHtml = ''  // lo cargaremos luego
+let vite
 
-  // Create http server
-  const app = express()
+const app = express()
 
-  // Add Vite or respective production middlewares
-  /** @type {import('vite').ViteDevServer | undefined} */
-  let vite
-  if (!isProduction) {
-    const { createServer } = await import('vite')
-    vite = await createServer({
-      server: { middlewareMode: true },
-      appType: 'custom',
-      base,
-    })
-    app.use(vite.middlewares)
-  } else {
+// En vez de "await" en top-level, hazlo en una función de inicialización
+async function initServer() {
+  if (isProduction) {
+    templateHtml = await fs.readFile(path.join(process.cwd(), 'dist/client/index.html'), 'utf-8')
     const compression = (await import('compression')).default
     const sirv = (await import('sirv')).default
     app.use(compression())
-    app.use(base, sirv('./dist/client', { extensions: [] }))
+    app.use(sirv(path.join(process.cwd(), 'dist/client')))
+  } else {
+    const { createServer } = await import('vite')
+    vite = await createServer({
+      server: { middlewareMode: true },
+      appType: 'custom'
+    })
+    app.use(vite.middlewares)
   }
+}
 
-  // Serve HTML
-  app.use('*all', async (req, res) => {
-    try {
-      const url = req.originalUrl.replace(base, '')
-
-      /** @type {string} */
-      let template
-      /** @type {import('./src/entry-server.ts').render} */
-      let render
-      if (!isProduction) {
-        // Always read fresh template in development
-        template = await fs.readFile('./index.html', 'utf-8')
-        template = await vite.transformIndexHtml(url, template)
-        render = (await vite.ssrLoadModule('/src/entry-server.tsx')).render
-      } else {
-        template = templateHtml
-        render = (await import('./dist/server/entry-server.js')).render
-      }
-
-      const rendered = await render(url)
-
-      const html = template
-        .replace(`<!--app-head-->`, rendered.head ?? '')
-        .replace(`<!--app-html-->`, rendered.html ?? '')
-
-      res.status(200).set({ 'Content-Type': 'text/html' }).send(html)
-    } catch (e) {
-      vite?.ssrFixStacktrace(e)
-      console.log(e.stack)
-      res.status(500).end(e.stack)
+// Handler SSR
+app.use('*', async (req, res) => {
+  try {
+    // Cada vez que alguien entra, confirmamos si ya inicializamos (podrías usar una variable booleana para “init done”)
+    if ((!vite && !templateHtml) /* o tu propia condición */) {
+      await initServer()
     }
-  })
 
-  // Start http server
-  export default app
+    // Lógica de render
+    let template
+    let render
+    if (!isProduction) {
+      // Lee y transforma el index.html fresco
+      template = await fs.readFile('./index.html', 'utf-8')
+      template = await vite.transformIndexHtml(req.url, template)
+      render = (await vite.ssrLoadModule('/src/entry-server.tsx')).render
+    } else {
+      template = templateHtml
+      render = (await import('./dist/server/entry-server.js')).render
+    }
+
+    const { html, head } = await render(req.url)
+    const finalHtml = template
+      .replace('<!--app-head-->', head ?? '')
+      .replace('<!--app-html-->', html ?? '')
+
+    res.status(200).set({ 'Content-Type': 'text/html' }).send(finalHtml)
+  } catch (err) {
+    vite?.ssrFixStacktrace(err)
+    console.error(err)
+    res.status(500).send(err.toString())
+  }
+})
+
+export default app

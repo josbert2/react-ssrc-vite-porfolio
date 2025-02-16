@@ -13,6 +13,7 @@ import MarqueeHtml from './marquee'
 import Travels from './Travels';
 
 import profile from '../assets/profile.jpg'
+import perfil from '../assets/perfil.jpg'
 
 
 const DashedLineContainer = ({ children }: { children: React.ReactNode }) => {
@@ -603,7 +604,7 @@ const HeroSection = () => {
             >
               <motion.img
                 className="rounded-[24px]"
-                src="https://josbert.dev/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fperfil.41276050.jpg&w=1080&q=75"
+                src={perfil}
                 alt="perfil"
                 initial={{ y: 10 }}
                 animate={{ y: 0 }}

@@ -478,6 +478,16 @@ p.framer-text{
 
 }
 
+@media (max-width: 768px) {
+  .backdrop-blur-lg{
+    box-shadow: none;
+  }
+  .bg-ln-gray-header {
+    border-radius: 0 !important;
+    z-index: 9999;
+  }
+}
+
 .neon-effect {
   background: linear-gradient(90deg, #ff7e5f, #feb47b);
   box-shadow: 0 0 10px #feb47b, 0 0 20px #feb47b, 0 0 30px #ff7e5f, 0 0 40px #ff7e5f;

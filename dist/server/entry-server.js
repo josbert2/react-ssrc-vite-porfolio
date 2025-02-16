@@ -783,6 +783,7 @@ function NalaImage() {
   ] }) }) }) });
 }
 const profile = "/assets/profile-6CZfycmz.jpg";
+const perfil = "/assets/perfil-DAcQE0l3.jpg";
 const DashedLineContainer = ({ children }) => {
   const container = {
     initial: {
@@ -971,7 +972,7 @@ const HeroSection = () => {
               motion.img,
               {
                 className: "rounded-[24px]",
-                src: "https://josbert.dev/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fperfil.41276050.jpg&w=1080&q=75",
+                src: perfil,
                 alt: "perfil",
                 initial: { y: 10 },
                 animate: { y: 0 },

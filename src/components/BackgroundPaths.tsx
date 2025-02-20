@@ -72,6 +72,7 @@ export function BackgroundPaths() {
       <AnimatePresence>
         {isOpen && (
           <motion.div 
+           
             className="fixed inset-0 z-[9000] motion-bg bg-black/10 bg-opacity-50 backdrop-blur-lg flex items-center justify-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -164,7 +165,7 @@ export function BackgroundPaths() {
           
                   
             
-            <div className="relative z-10 container mx-auto px-4 md:px-6 text-center">
+            <div  id="contact" className="relative z-10 container mx-auto px-4 md:px-6 text-center">
               <motion.div
                onClick={() => setIsOpen(true)}
                 initial={{ opacity: 0 }}

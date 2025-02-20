@@ -711,7 +711,7 @@ const UserTravels = () => {
 const AboutMe = () => {
   return (
     <>
-      <div className="container pointer-events-none  -z-10 select-none mac:block">
+      <div id="about" className="container  -z-10  mac:block">
         <section className="framer-bvzlds" >
           <div className="framer-h6odpz grid-col-2" >
               <div className="framer-1n4bwt" >

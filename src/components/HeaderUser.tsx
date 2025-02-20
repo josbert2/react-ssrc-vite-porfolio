@@ -3,7 +3,43 @@ import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { useIsMobile } from "../hooks/use-mobile"
 
+
+function ScrollLink({ targetId, label }) {
+  const handleClick = (e) => {
+    e.preventDefault(); // Evitamos el jump inmediato
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <a
+      href={`#${targetId}`}
+      onClick={handleClick}
+      className="
+        relative inline-flex h-10 items-center justify-center gap-3.5
+        whitespace-nowrap rounded-10 px-4 text-label-sm outline-none 
+        transition duration-200 ease-out focus:outline-none text-ln-gray-500 
+        shadow-regular-xs ring-stroke-soft-200 hover:bg-bg-weak-50 
+        hover:shadow-none hover:ring-transparent
+        focus-visible:shadow-button-important-focus
+        focus-visible:ring-stroke-strong-950 w-full
+      "
+    >
+      {label}
+    </a>
+  );
+}
+
 export default function HeaderUser() {
+
+  const links = [
+    { targetId: 'about', label: '01. About' },
+    { targetId: 'works', label: '02. Trabajos' },
+    { targetId: 'contact', label: '03. Contacto'   }
+
+  ];
 
   const easeOutQuint = [0.23, 1, 0.32, 1];
   const widthMobileHeader = !useIsMobile() ? '50%' : '100%'
@@ -68,38 +104,13 @@ export default function HeaderUser() {
               </div>
               <nav className="flex justify-center items-center gap-2.5 lg:flex absolute top-2/4 transform -translate-y-2/4  right-0">
             
-                <button className=" relative
-                 inline-flex h-10 items-center justify-center gap-3.5 whitespace-nowrap rounded-10
-                  px-4 text-label-sm outline-none transition duration-200 ease-out 
-                  focus:outline-none text-ln-gray-500 shadow-regular-xs 
-                  ring-stroke-soft-200 hover:bg-bg-weak-50 hover:shadow-none hover:ring-transparent
-                 focus-visible:shadow-button-important-focus focus-visible:ring-stroke-strong-950 w-full">
-                  01. About
-                </button>
-                <button className=" relative
-                 inline-flex h-10 items-center justify-center gap-3.5 whitespace-nowrap rounded-10
-                  px-4 text-label-sm outline-none transition duration-200 ease-out 
-                  focus:outline-none  text-ln-gray-500 shadow-regular-xs 
-                  ring-stroke-soft-200 hover:bg-bg-weak-50 hover:shadow-none hover:ring-transparent
-                 focus-visible:shadow-button-important-focus focus-visible:ring-stroke-strong-950 w-full">
-                  02. Experiencia
-                </button>
-                <button className=" relative
-                 inline-flex h-10 items-center justify-center gap-3.5 whitespace-nowrap rounded-10
-                  px-4 text-label-sm outline-none transition duration-200 ease-out 
-                  focus:outline-none  text-ln-gray-500 shadow-regular-xs 
-                  ring-stroke-soft-200 hover:bg-bg-weak-50 hover:shadow-none hover:ring-transparent
-                 focus-visible:shadow-button-important-focus focus-visible:ring-stroke-strong-950 w-full">
-                  03. Trabajos
-                </button>
-                <button className=" relative
-                 inline-flex h-10 items-center justify-center gap-3.5 whitespace-nowrap rounded-10
-                  px-4 text-label-sm outline-none transition duration-200 ease-out 
-                  focus:outline-none  text-ln-gray-500 shadow-regular-xs 
-                  ring-stroke-soft-200 hover:bg-bg-weak-50 hover:shadow-none hover:ring-transparent
-                 focus-visible:shadow-button-important-focus focus-visible:ring-stroke-strong-950 w-full">
-                  04. Contactos
-                </button>
+              {links.map((link) => (
+                <ScrollLink
+                  key={link.targetId}
+                  targetId={link.targetId}
+                  label={link.label}
+                />
+              ))}
                 
               </nav>
 

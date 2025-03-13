@@ -3,6 +3,11 @@ import { motion, AnimatePresence } from "motion/react";
 import { useIsMobile } from "../hooks/use-mobile"
 
 
+import nala from "../assets/img/nala.jpg";
+import image5 from "../assets/img/image-5 (1).webp";
+import image4 from "../assets/img/image-4.jpg";
+import image55 from "../assets/img/iamge-5.png";
+
 type Testimonial = {
   quote: string;
   name: string;
@@ -17,21 +22,21 @@ export default function NalaImage() {
         "The attention to detail and innovative features have completely transformed our workflow. This is exactly what we've been looking for.",
       name: "Sarah Chen",
       designation: "Product Manager at TechFlow",
-      src: "../public/image-4.jpg",
+      src: image4,
     },
     {
       quote:
         "Implementation was seamless and the results exceeded our expectations. The platform's flexibility is remarkable.",
       name: "Michael Rodriguez",
       designation: "CTO at InnovateSphere",
-      src: "../public/nala.jpg",
+      src: nala,
     },
     {
       quote:
         "This solution has significantly improved our team's productivity. The intuitive interface makes complex tasks simple.",
       name: "Emily Watson",
       designation: "Operations Director at CloudScale",
-      src: "./public/image-5 (1).webp",
+      src: image5,
     },
     {
       quote:
@@ -45,7 +50,7 @@ export default function NalaImage() {
         "The scalability and performance have been game-changing for our organization. Highly recommend to any growing business.",
       name: "Lisa Thompson",
       designation: "VP of Technology at FutureNet",
-      src: "../public/iamge-5.png",
+      src: image55,
     },
   ];
   const [active, setActive] = useState(0);

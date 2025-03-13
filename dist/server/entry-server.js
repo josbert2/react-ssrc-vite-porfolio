@@ -1043,7 +1043,7 @@ const UserTravels = () => {
   ] }) }) });
 };
 const AboutMe = () => {
-  return /* @__PURE__ */ jsx(Fragment, { children: /* @__PURE__ */ jsx("div", { className: "container pointer-events-none  -z-10 select-none mac:block", children: /* @__PURE__ */ jsxs("section", { className: "framer-bvzlds", children: [
+  return /* @__PURE__ */ jsx(Fragment, { children: /* @__PURE__ */ jsx("div", { id: "about", className: "container  -z-10  mac:block", children: /* @__PURE__ */ jsxs("section", { className: "framer-bvzlds", children: [
     /* @__PURE__ */ jsxs("div", { className: "framer-h6odpz grid-col-2", children: [
       /* @__PURE__ */ jsxs("div", { className: "framer-1n4bwt", children: [
         /* @__PURE__ */ jsxs("div", { className: "framer-9ydxhr", children: [
@@ -1274,7 +1274,30 @@ const AboutMe = () => {
     ) })
   ] }) }) });
 };
+function ScrollLink({ targetId, label }) {
+  const handleClick = (e) => {
+    e.preventDefault();
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+  return /* @__PURE__ */ jsx(
+    "a",
+    {
+      href: `#${targetId}`,
+      onClick: handleClick,
+      className: "\n        relative inline-flex h-10 items-center justify-center gap-3.5\n        whitespace-nowrap rounded-10 px-4 text-label-sm outline-none \n        transition duration-200 ease-out focus:outline-none text-ln-gray-500 \n        shadow-regular-xs ring-stroke-soft-200 hover:bg-bg-weak-50 \n        hover:shadow-none hover:ring-transparent\n        focus-visible:shadow-button-important-focus\n        focus-visible:ring-stroke-strong-950 w-full\n      ",
+      children: label
+    }
+  );
+}
 function HeaderUser() {
+  const links = [
+    { targetId: "about", label: "01. About" },
+    { targetId: "works", label: "02. Trabajos" },
+    { targetId: "contact", label: "03. Contacto" }
+  ];
   const easeOutQuint = [0.23, 1, 0.32, 1];
   const widthMobileHeader = !useIsMobile() ? "50%" : "100%";
   const yMobileHeader = !useIsMobile() ? "20px" : "0";
@@ -1311,12 +1334,14 @@ function HeaderUser() {
               }
             ),
             /* @__PURE__ */ jsx("div", { className: "flex items-center gap-2.5 pr-40 absolute top-2/4 transform -translate-y-2/4 ", children: /* @__PURE__ */ jsx("a", { className: "focus:outline-none", href: "/", children: /* @__PURE__ */ jsx("div", { className: "relative", children: /* @__PURE__ */ jsx("h1", { className: "text-title-h6 bg-clip-text bg-gradient-to-b from-black dark:from-white text-transparent antialiased relative text-5xl sm:text-7xl font-bold py-1 font-anurati", children: "JH" }) }) }) }),
-            /* @__PURE__ */ jsxs("nav", { className: "flex justify-center items-center gap-2.5 lg:flex absolute top-2/4 transform -translate-y-2/4  right-0", children: [
-              /* @__PURE__ */ jsx("button", { className: " relative\n                 inline-flex h-10 items-center justify-center gap-3.5 whitespace-nowrap rounded-10\n                  px-4 text-label-sm outline-none transition duration-200 ease-out \n                  focus:outline-none text-ln-gray-500 shadow-regular-xs \n                  ring-stroke-soft-200 hover:bg-bg-weak-50 hover:shadow-none hover:ring-transparent\n                 focus-visible:shadow-button-important-focus focus-visible:ring-stroke-strong-950 w-full", children: "01. About" }),
-              /* @__PURE__ */ jsx("button", { className: " relative\n                 inline-flex h-10 items-center justify-center gap-3.5 whitespace-nowrap rounded-10\n                  px-4 text-label-sm outline-none transition duration-200 ease-out \n                  focus:outline-none  text-ln-gray-500 shadow-regular-xs \n                  ring-stroke-soft-200 hover:bg-bg-weak-50 hover:shadow-none hover:ring-transparent\n                 focus-visible:shadow-button-important-focus focus-visible:ring-stroke-strong-950 w-full", children: "02. Experiencia" }),
-              /* @__PURE__ */ jsx("button", { className: " relative\n                 inline-flex h-10 items-center justify-center gap-3.5 whitespace-nowrap rounded-10\n                  px-4 text-label-sm outline-none transition duration-200 ease-out \n                  focus:outline-none  text-ln-gray-500 shadow-regular-xs \n                  ring-stroke-soft-200 hover:bg-bg-weak-50 hover:shadow-none hover:ring-transparent\n                 focus-visible:shadow-button-important-focus focus-visible:ring-stroke-strong-950 w-full", children: "03. Trabajos" }),
-              /* @__PURE__ */ jsx("button", { className: " relative\n                 inline-flex h-10 items-center justify-center gap-3.5 whitespace-nowrap rounded-10\n                  px-4 text-label-sm outline-none transition duration-200 ease-out \n                  focus:outline-none  text-ln-gray-500 shadow-regular-xs \n                  ring-stroke-soft-200 hover:bg-bg-weak-50 hover:shadow-none hover:ring-transparent\n                 focus-visible:shadow-button-important-focus focus-visible:ring-stroke-strong-950 w-full", children: "04. Contactos" })
-            ] })
+            /* @__PURE__ */ jsx("nav", { className: "flex justify-center items-center gap-2.5 lg:flex absolute top-2/4 transform -translate-y-2/4  right-0", children: links.map((link) => /* @__PURE__ */ jsx(
+              ScrollLink,
+              {
+                targetId: link.targetId,
+                label: link.label
+              },
+              link.targetId
+            )) })
           ]
         }
       )
@@ -2016,7 +2041,7 @@ function BackgroundPaths() {
         /* @__PURE__ */ jsx(FloatingPaths, { position: 1 }),
         /* @__PURE__ */ jsx(FloatingPaths, { position: -1 })
       ] }),
-      /* @__PURE__ */ jsx("div", { className: "relative z-10 container mx-auto px-4 md:px-6 text-center", children: /* @__PURE__ */ jsxs(
+      /* @__PURE__ */ jsx("div", { id: "contact", className: "relative z-10 container mx-auto px-4 md:px-6 text-center", children: /* @__PURE__ */ jsxs(
         motion.div,
         {
           onClick: () => setIsOpen(true),
@@ -2418,7 +2443,7 @@ function Work() {
     // https://github.com/josbert2/munder
   ];
   const visibleProjects = dataProject.slice(0, itemsToShow);
-  return /* @__PURE__ */ jsx(Fragment, { children: /* @__PURE__ */ jsx("section", { ref, className: "container md:px-0 mt-20 pb-20 relative  sm:mt-20", children: /* @__PURE__ */ jsxs("div", { className: "px-10 md:px-20", children: [
+  return /* @__PURE__ */ jsx(Fragment, { children: /* @__PURE__ */ jsx("section", { id: "works", ref, className: "container md:px-0 mt-20 pb-20 relative  sm:mt-20", children: /* @__PURE__ */ jsxs("div", { className: "px-10 md:px-20", children: [
     /* @__PURE__ */ jsxs(
       motion.div,
       {

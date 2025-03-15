@@ -568,7 +568,7 @@ const HeaderUser = () => {
 const HeroSection = () => {
   return (
     <>
-      <div className="flex flex-col items-center text-center px-10 xl:px-72 py-32 z-[100]">
+      <div className="flex flex-col items-center text-center px-0 xl:px-72 md:py-32 py-20 z-[100]">
         <DashedLineContainer>
           {!useIsMobile() ? (
               <>
@@ -777,7 +777,7 @@ const AboutMe = () => {
                           data-framer-component-type="RichTextContainer"
                       >
                           <p className="framer-text framer-styles-preset-1kvyxmc open-sans" data-styles-preset="n7RLEGRKm">
-                              <span style={{ display: "inline-block", opacity: 1, transform: "none", willChange: "transform" }}>Hi, i am josbert i am web developer frontend and creative enginer desing</span> 
+                              <span style={{ display: "inline-block", opacity: 1, transform: "none", willChange: "transform" }}>Hi, I'm Josbert, a passionate Frontend Web Developer and <br></br> Creative Design Engineer, crafting visually stunning and user-friendly digital experiences.</span> 
                              
                           </p>
 

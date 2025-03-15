@@ -3,13 +3,18 @@ import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 
 const boxShadowIntensity = Math.random() * 225 + 5;
+
+const isMobile = () => {
+    return window.innerWidth <= 768;
+}
+
 const asteroidVariants = {
     initial: (startPosition: { x: number; y: number }) => ({
         x: startPosition.x,
         y: startPosition.y,
         opacity: 1,
         scale: 0.5,
-        rotate: 30,
+        rotate: isMobile() ? 60 : 30, // old 30 
         top: Math.random() * 30 + 'vh',
         left: -100,
     }),

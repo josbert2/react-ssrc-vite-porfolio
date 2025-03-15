@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { useIsMobile } from "../hooks/use-mobile"
-
+import MeteorHamburger from "./MeteorHamburguer";
 
 function ScrollLink({ targetId, label }) {
   const handleClick = (e) => {
@@ -84,7 +84,7 @@ export default function HeaderUser() {
               />
             </div> */}
             <motion.header 
-              className="relative backdrop-blur-lg z-10 flex h-10 w-full items-center !py-[35px] justify-between  rounded-t-2xl bg-ln-gray-25 px-4  lg:justify-start lg:rounded-3xl bg-ln-gray-header  lg:shadow-ln-xs"
+              className="relative md:flex hidden backdrop-blur-lg z-10 flex h-10 w-full items-center !py-[35px] justify-between  rounded-t-2xl bg-ln-gray-25 px-4  lg:justify-start lg:rounded-3xl bg-ln-gray-header  lg:shadow-ln-xs"
               animate={scrolled ? { width: "100%", borderRadius: '0' } : {  width: widthMobileHeader, borderRadius: '16px' }} // Baja el header 40px si se cumple la condición
               transition={{ duration: 0.6, ease: easeOutQuint,   delay: 0.1, }} // Transición suave
             >
@@ -102,15 +102,16 @@ export default function HeaderUser() {
                 </a>
                
               </div>
-              <nav className="flex justify-center items-center gap-2.5 lg:flex absolute top-2/4 transform -translate-y-2/4  right-0">
             
-              {links.map((link) => (
-                <ScrollLink
-                  key={link.targetId}
-                  targetId={link.targetId}
-                  label={link.label}
-                />
-              ))}
+              <nav className="md:flex hidden justify-center items-center gap-2.5 lg:flex absolute top-2/4 transform -translate-y-2/4  right-0">
+
+                {links.map((link) => (
+                  <ScrollLink
+                    key={link.targetId}
+                    targetId={link.targetId}
+                    label={link.label}
+                  />
+                ))}
                 
               </nav>
 
@@ -120,6 +121,8 @@ export default function HeaderUser() {
             
               
             </motion.header>
+
+          
            {/* <div className="relative  h-px flex-1 bg-ln-gray-200 bleed-bg-r bleed-ln-gray-200 mac:block">
               <img
                 src="https://alignui.com/images/landing/dot.png"

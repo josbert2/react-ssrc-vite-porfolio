@@ -80,7 +80,7 @@ export function BackgroundPaths() {
           >
             
             <motion.div
-              className="bg-[#1F1F20] rounded-2xl p-6 shadow-xl w-2/4 relative backdrop-blur-md overflow-hidden "
+              className="bg-[#1F1F20] rounded-2xl p-6 shadow-xl md:w-[30%] relative backdrop-blur-md overflow-hidden "
               initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               exit={{ opacity: 0, y: 20, filter: "blur(10px)" }}
@@ -107,6 +107,7 @@ export function BackgroundPaths() {
                 </div>
                 <div className="flex justify-end  col-span-2">
                        <button
+                        onClick={() => setIsOpen(false)}
                           className="cursor-pointer shadow-ln-xs px-12 py-3 overflow-hidden  rounded-full uppercase open-sans font-bold text-[14px] relative"  >
                         Cerrar
                       </button>

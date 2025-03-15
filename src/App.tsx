@@ -18,6 +18,7 @@ import AsteroidMotion from './components/Asteroide'
 import StarField from './components/particles'
 import CornedEarth from './components/corned-earth'
 import { BackgroundPaths } from './components/BackgroundPaths';
+import MeteorHamburger from './components/MeteorHamburguer'
 
 // @misc
 import Separator from "./components/misc/separator";
@@ -30,7 +31,9 @@ function App() {
   return (
     <>
       <div className="relative isolate flex min-h-screen flex-col bg-ln-gray-25 ">
-       
+          <div className="z-[9999] relative md:hidden">
+            <MeteorHamburger/>
+          </div>
           <div className="pt-10 absolute top-0 left-0 h-screen w-full">
             <AsteroidMotion />
           </div>

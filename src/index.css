@@ -2737,3 +2737,35 @@ progress[value] {
   font-variation-settings:
     "wdth" 100;
 }
+
+
+@media (max-width: 768px) {
+  p.framer-text{
+    font-size: 34px;
+  }
+  span.framer-text:not([data-text-fill]){
+    font-size: 34px;
+  }
+  .framer-obe0ej-container{
+    padding: 0 20px;
+  }
+  .framer-bvzlds{
+    padding: 0 0px;
+  }
+  .framer-styles-preset-1kvyxmc{
+    font-size: 12px !important;
+  }
+  .framer-1w079fg p{
+    font-size: 12px !important;
+  }
+  .framer-1gqbim0 p{
+    font-size: 12px !important;
+  }
+  .framer-1xbvzw3 .framer-text{
+    font-size:38px !important;
+    line-height: 51px;
+  }
+  .framer-gwfg9e  .framer-text{
+    font-size:12px !important;
+  }
+}

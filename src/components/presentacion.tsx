@@ -49,7 +49,7 @@ const presentacionTwo = () => {
                         backgroundImage:
                             "linear-gradient(0deg, rgba(190, 193, 207, 0.64) 0%, rgba(213, 216, 234, 0.886) 88.2362%, rgb(223, 226, 245) 100%)",
                         }}>
-                       <span className="font-xl"> Hi, I&apos;m Josbert 💫 I am</span>
+                       <span className="font-xl" style={{fontFamily: 'Open Sans'}}> Hi, I&apos;m Josbert 💫 I am</span>
                         <span
                         className="framer-text mr-1"
                         style={{

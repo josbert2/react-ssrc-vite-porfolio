@@ -2769,3 +2769,19 @@ progress[value] {
     font-size:12px !important;
   }
 }
+
+.instruction {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: none;
+  font-family: 'Gloria Hallelujah', cursive;
+  translate: 153px -28%;
+  transform: scaleX(-1);
+  color:  color-mix(in lch, canvas, canvasText 80%);
+  height: auto;
+}
+
+.instruction span {
+  transform: none; /* Mantener el texto normal */
+}

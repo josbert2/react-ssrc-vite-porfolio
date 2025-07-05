@@ -475,7 +475,7 @@ export default function Work() {
                                                 "--framer-text-color":
                                                 "var(--extracted-r6o4lv, rgb(173, 173, 173))",
                                             }}>
-                                            iOS App
+                                             {project.type}
                                             </p>
                                         </div>
                                         </div>

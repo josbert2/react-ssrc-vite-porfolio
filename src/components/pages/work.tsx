@@ -9,6 +9,8 @@ import ButtonSection from '../button-section';
 
 
 
+import butacas from '../../assets/butacas.png'
+
 import bookforce from '../../assets/bookforce.webp'
 import crypto from '../../assets/crypto.webp'
 import mill from '../../assets/mill.webp'
@@ -286,12 +288,201 @@ export default function Work() {
         
     ]
 
+
+    const featuresProjects = [
+        {
+            title: "Butacas",
+            description: "Navigate the world of web technology",
+            image: butacas,
+            type: "Web APP",
+            icon: iconBlackcoffee,
+            url: "https://josbert2.github.io/teas/",
+            repository: "https://josbert2.github.io/teas/" // https://github.com/josbert2/landings
+        },
+        {
+            title: "ADAGIOS TEAS",
+            description: "Natural Teas",
+            image: adagio,
+            type: "Web APP",
+            url: "https://adagio-zeta.vercel.app/",
+            repository: "https://github.com/josbert2/adagio"
+        }
+    ]
+
     const visibleProjects = dataProject.slice(0, itemsToShow);
 
 
 
     return (
         <>
+            <div>
+                <div className="px-0 md:px-20">
+                    <motion.div
+                        className="btn-title relative w-full mb-16 flex justify-start container-btn"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={inView ? { opacity: 1, x: 0 } : {}}
+                        transition={{ duration: 0.5, ease: [0.17, 0.55, 0.55, 1] }}
+                    >
+                        <div className="framer-1u3alye"></div>
+                       <ButtonSection title="Feature works" />
+                       <div className="framer-4ek1z5"></div>
+                    </motion.div>
+
+
+                <div className="grid md:grid-cols-2 gap-10 md:px-40">
+                    {featuresProjects.map((project, index) => (
+                        <div
+                             className="framer-1hhlnuq-container"
+                             key={index}
+                             style={{
+                                 opacity: "1",
+                                 transform: "perspective(1200px)",
+                             }}>
+                                <a
+                                    className="framer-rtsKZ framer-6pxgjl framer-v-6pxgjl framer-d4tf0f"
+                                    onMouseEnter={() => setHoveredIndex(index)}
+                                    onMouseLeave={() => setHoveredIndex(null)}
+                                    href={project.url}
+                                    style={{
+                                        backgroundColor: "rgba(21, 22, 23, 0)",
+                                        opacity: "1",
+                                        width: "100%",
+                                    }}
+                                  >
+                                    <div
+                                    className="framer-1edw8qi-container"
+                                    style={{
+                                        opacity: "0",
+                                    }}>
+                                    <div
+                                        style={{
+                                        display: "contents",
+                                        }}>
+                                        <svg
+                                        color="rgba(0, 0, 0, 0.19)"
+                                        focusable="false"
+                                        style={{
+                                            color: "rgba(0, 0, 0, 0.19)",
+                                            display: "inline-block",
+                                            fill: "rgba(0, 0, 0, 0.19)",
+                                            flexShrink: "0",
+                                            height: "100%",
+                                            userSelect: "none",
+                                            width: "100%",
+                                        }}
+                                        viewBox="0 0 256 256"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g color="rgba(0, 0, 0, 0.19)">
+                                            <path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z" />
+                                        </g>
+                                        </svg>
+                                    </div>
+                                    </div>
+                                    <motion.div
+                                    className="framer-2hmlbu"
+                                    data-framer-name="BlurImage"
+                                    animate={{ opacity: hoveredIndex === index ? 1 : 0 }}
+                                    initial={{ opacity: 0 }}
+                                    whileHover={{ opacity: 1 }}
+                                    style={{
+                                        borderRadius: "18px",
+                                        filter: "brightness(2) saturate(2) blur(80px)",
+                                        opacity: "0",
+                                    }}>
+                                        <div
+                                            data-framer-background-image-wrapper="true"
+                                            style={{
+                                            borderRadius: "inherit",
+                                            bottom: "0",
+                                            left: "0",
+                                            position: "absolute",
+                                            right: "0",
+                                            top: "0",
+                                            }}>
+                                            <img
+                                                src={project.image} 
+                                                alt=""
+                                                sizes="calc(min(473px, 100vw) - 2px)"
+                                                style={{
+                                                    borderRadius: "inherit",
+                                                    display: "block",
+                                                    height: "100%",
+                                                    imageRendering: "auto",
+                                                    objectFit: "cover",
+                                                    objectPosition: "center",
+                                                    width: "100%",
+                                                }}
+                                            />
+                                            {/*<img
+                                            alt=""
+                                            sizes="calc(min(473px, 100vw) - 2px)"
+                                            src="https://framerusercontent.com/images/gGr7r5BWikwvibWmbgQH3Gsc81M.png"
+                                            srcSet="                        https://framerusercontent.com/images/gGr7r5BWikwvibWmbgQH3Gsc81M.png?scale-down-to=512   512w,                        https://framerusercontent.com/images/gGr7r5BWikwvibWmbgQH3Gsc81M.png?scale-down-to=1024 1024w,                        https://framerusercontent.com/images/gGr7r5BWikwvibWmbgQH3Gsc81M.png                    1920w                    "
+                                            style={{
+                                                borderRadius: "inherit",
+                                                display: "block",
+                                                height: "100%",
+                                                imageRendering: "auto",
+                                                objectFit: "cover",
+                                                objectPosition: "center",
+                                                width: "100%",
+                                            }}
+                                            /> */}
+                                        </div>
+                                    </motion.div>
+                                  
+                                    <div
+                                    className="framer-ejjo2t"
+                                    data-framer-name="ImageWrap"
+                                    style={{
+                                        borderRadius: "18px",
+                                        opacity: "1",
+                                    }}>
+                                    <div
+                                        className="framer-q1jd2k"
+                                        data-framer-name="Image"
+                                        style={{
+                                        borderRadius: "18px",
+                                        opacity: "1",
+                                        transform: "perspective(1200px)",
+                                        }}>
+                                        <div
+                                        data-framer-background-image-wrapper="true"
+                                        style={{
+                                            borderRadius: "inherit",
+                                            bottom: "0",
+                                            left: "0",
+                                            position: "absolute",
+                                            right: "0",
+                                            top: "0",
+                                        }}>
+                                            <img
+                                                src={project.image}
+                                                alt="he"
+                                                loading="lazy"
+                                                placeholder="blur" 
+                                                blurDataURL={project.image.src}
+                                                style={{
+                                                    borderRadius: "inherit",
+                                                    display: "block",
+                                                    height: "100%",
+                                                    imageRendering: "auto",
+                                                    objectFit: "cover",
+                                                    objectPosition: "center",
+                                                    width: "100%",
+                                                }} 
+                                            />
+                                        
+                                        </div>
+                                    </div>
+                                    </div>
+                                </a>
+                        </div>
+                    ))}
+                </div>
+
+                </div>
+            </div>
             <section id="works" ref={ref} className="container md:px-0 mt-20 pb-20 relative  sm:mt-20">
                 <div className="px-0 md:px-20">
                     <motion.div

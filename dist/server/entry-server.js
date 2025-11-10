@@ -1,6 +1,6 @@
 import { jsxs, jsx, Fragment } from "react/jsx-runtime";
 import * as React from "react";
-import React__default, { useId, useRef, useState, useEffect, StrictMode } from "react";
+import React__default, { useId, useRef, useState, useEffect, memo, useCallback, useMemo, StrictMode } from "react";
 import { renderToString } from "react-dom/server";
 import { motion, AnimatePresence } from "motion/react";
 import { twMerge } from "tailwind-merge";
@@ -8,7 +8,7 @@ import { clsx } from "clsx";
 import { useInView } from "react-intersection-observer";
 const MOBILE_BREAKPOINT = 768;
 function useIsMobile() {
-  const [isMobile, setIsMobile] = React.useState(void 0);
+  const [isMobile2, setIsMobile] = React.useState(void 0);
   React.useEffect(() => {
     const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`);
     const onChange = () => {
@@ -18,7 +18,7 @@ function useIsMobile() {
     setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
     return () => mql.removeEventListener("change", onChange);
   }, []);
-  return !!isMobile;
+  return !!isMobile2;
 }
 function cn(...inputs) {
   return twMerge(clsx(inputs));
@@ -226,7 +226,7 @@ const presentacionTwo = () => {
                       backgroundImage: "linear-gradient(0deg, rgba(190, 193, 207, 0.64) 0%, rgba(213, 216, 234, 0.886) 88.2362%, rgb(223, 226, 245) 100%)"
                     },
                     children: [
-                      /* @__PURE__ */ jsx("span", { className: "font-xl", children: " Hi, I'm Josbert 💫 I am" }),
+                      /* @__PURE__ */ jsx("span", { className: "font-xl", style: { fontFamily: "Open Sans" }, children: " Hi, I'm Josbert 💫 I am" }),
                       /* @__PURE__ */ jsx(
                         "span",
                         {
@@ -590,25 +590,29 @@ function MarqueeHtml() {
     }
   ) }) });
 }
+const nala = "/assets/nala-Culiuupj.jpg";
+const image5 = "/assets/image-5%20(1)-np_MkBBt.webp";
+const image4 = "/assets/image-4-BmskpeKG.jpg";
+const image55 = "/assets/iamge-5-BtOVQTvG.png";
 function NalaImage() {
   const testimonials = [
     {
       quote: "The attention to detail and innovative features have completely transformed our workflow. This is exactly what we've been looking for.",
       name: "Sarah Chen",
       designation: "Product Manager at TechFlow",
-      src: "../public/image-4.jpg"
+      src: image4
     },
     {
       quote: "Implementation was seamless and the results exceeded our expectations. The platform's flexibility is remarkable.",
       name: "Michael Rodriguez",
       designation: "CTO at InnovateSphere",
-      src: "../public/nala.jpg"
+      src: nala
     },
     {
       quote: "This solution has significantly improved our team's productivity. The intuitive interface makes complex tasks simple.",
       name: "Emily Watson",
       designation: "Operations Director at CloudScale",
-      src: "./public/image-5 (1).webp"
+      src: image5
     },
     {
       quote: "Outstanding support and robust features. It's rare to find a product that delivers on all its promises.",
@@ -620,7 +624,7 @@ function NalaImage() {
       quote: "The scalability and performance have been game-changing for our organization. Highly recommend to any growing business.",
       name: "Lisa Thompson",
       designation: "VP of Technology at FutureNet",
-      src: "../public/iamge-5.png"
+      src: image55
     }
   ];
   const [active, setActive] = useState(0);
@@ -658,7 +662,7 @@ function NalaImage() {
         width: 1536,
         height: 2048,
         className: "absolute inset-0 h-full w-full object-cover",
-        src: "../public/nala.jpg",
+        src: nala,
         style: { color: "transparent" }
       }
     ) }) }),
@@ -669,7 +673,7 @@ function NalaImage() {
         width: 1536,
         height: 2048,
         className: "absolute inset-0 h-full w-full object-cover",
-        src: "../public/image-5 (1).webp",
+        src: image5,
         style: { color: "transparent" }
       }
     ) }) }),
@@ -680,7 +684,7 @@ function NalaImage() {
         width: 3024,
         height: 4032,
         className: "absolute inset-0 h-full w-full object-cover",
-        src: "../public/image-4.jpg",
+        src: image4,
         style: { color: "transparent" }
       }
     ) }) }),
@@ -691,7 +695,7 @@ function NalaImage() {
         width: 3024,
         height: 4032,
         className: "absolute inset-0 h-full w-full object-cover",
-        src: "../public/iamge-5.png",
+        src: image55,
         style: { color: "transparent" }
       }
     ) }) })
@@ -866,11 +870,11 @@ const VerticalDashedLine = ({
   width = "100%",
   mobileWidth = "100%"
 }) => {
-  const isMobile = useIsMobile();
+  const isMobile2 = useIsMobile();
   const variants = {
     initial: { width: "0%", opacity: 0.6 },
     visible: {
-      width: isMobile ? mobileWidth : width,
+      width: isMobile2 ? mobileWidth : width,
       opacity: 0.2,
       transition: { duration: 1 }
     }
@@ -935,7 +939,7 @@ const DashedCircle = ({ className }) => {
   ) }) });
 };
 const HeroSection = () => {
-  return /* @__PURE__ */ jsx(Fragment, { children: /* @__PURE__ */ jsx("div", { className: "flex flex-col items-center text-center px-10 xl:px-72 py-32 z-[100]", children: /* @__PURE__ */ jsxs(DashedLineContainer, { children: [
+  return /* @__PURE__ */ jsx(Fragment, { children: /* @__PURE__ */ jsx("div", { className: "flex flex-col items-center text-center px-0 xl:px-72 md:py-32 py-20 z-[100]", children: /* @__PURE__ */ jsxs(DashedLineContainer, { children: [
     !useIsMobile() ? /* @__PURE__ */ jsxs(Fragment, { children: [
       /* @__PURE__ */ jsx(
         VerticalDashedLine,
@@ -954,33 +958,39 @@ const HeroSection = () => {
         }
       ) })
     ] }) : /* @__PURE__ */ jsx(Fragment, {}),
-    /* @__PURE__ */ jsx(
+    /* @__PURE__ */ jsxs(
       motion.div,
       {
-        className: "flex justify-center py-4 rounded-lg mt-6",
+        className: "flex justify-center py-4 rounded-lg mt-6 relative",
         initial: { opacity: 0 },
         animate: { opacity: 1 },
         transition: { duration: 0.5 },
-        children: /* @__PURE__ */ jsx(
-          motion.div,
-          {
-            className: "frame rounded-lg",
-            initial: { scale: 0.9 },
-            animate: { scale: 1 },
-            transition: { duration: 0.5 },
-            children: /* @__PURE__ */ jsx(
-              motion.img,
-              {
-                className: "rounded-[24px]",
-                src: perfil,
-                alt: "perfil",
-                initial: { y: 10 },
-                animate: { y: 0 },
-                transition: { duration: 0.5 }
-              }
-            )
-          }
-        )
+        children: [
+          /* @__PURE__ */ jsxs("div", { className: "instruction", children: [
+            /* @__PURE__ */ jsx("svg", { viewBox: "0 0 144 141", fill: "none", xmlns: "http://www.w3.org/2000/svg", children: /* @__PURE__ */ jsx("path", { "fill-rule": "evenodd", "clip-rule": "evenodd", d: "M129.189 0.0490494C128.744 0.119441 126.422 0.377545 124.03 0.635648C114.719 1.6446 109.23 2.4893 108.058 3.09936C107.119 3.56864 106.674 4.34295 106.674 5.44576C106.674 6.71281 107.424 7.51058 109.043 7.97986C110.403 8.37875 110.825 8.42567 118.87 9.52847C121.778 9.92736 124.288 10.3028 124.475 10.3732C124.663 10.4436 122.951 11.1006 120.676 11.8749C110.028 15.4414 100.412 20.7677 91.7339 27.9242C88.38 30.7164 81.6957 37.4271 79.2096 40.5009C73.8387 47.2116 69.6874 54.8139 66.5681 63.7302C65.9348 65.4665 65.3484 66.8978 65.2546 66.8978C65.1374 66.8978 63.7771 66.7336 62.2291 66.5693C52.9649 65.5134 43.1847 68.1649 34.1316 74.2186C24.7735 80.46 18.5349 87.7338 10.5371 101.742C2.53943 115.726 -1.0959 127.482 0.287874 135.014C0.89767 138.463 2.0469 140.035 3.97011 140.082C5.28352 140.105 5.37733 139.659 4.20465 139.049C3.05541 138.463 2.6567 137.9 2.32835 136.281C0.616228 128.021 6.24512 113.028 17.4325 96.1104C23.2725 87.241 28.362 81.9147 35.5622 77.1046C43.8649 71.5437 52.7069 69.033 61.1737 69.8308C64.9967 70.1828 64.6917 69.9247 64.1992 72.4822C62.2525 82.5013 63.8005 92.6378 67.9753 97.354C73.1116 103.079 81.9771 102 85.0027 95.2657C86.3395 92.2858 86.3864 87.7103 85.1434 83.9796C83.1498 78.0901 80.007 73.8197 75.4335 70.8163C73.8152 69.7604 70.4848 68.1883 69.875 68.1883C69.359 68.1883 69.4294 67.6487 70.2268 65.3257C72.3377 59.2486 75.457 52.7021 78.4122 48.244C83.2436 40.9232 91.4524 32.5701 99.1687 27.103C105.806 22.4102 113.241 18.5386 120.512 16.0045C123.772 14.8548 129.87 13.1889 130.081 13.3766C130.128 13.447 129.541 14.362 128.791 15.4414C124.78 21.0258 122.716 26.0706 122.388 30.998C122.224 33.7198 122.341 34.588 122.88 34.2595C122.998 34.1891 123.678 32.969 124.405 31.5611C126.281 27.8069 131.722 20.6738 139.579 11.6402C141.127 9.85697 142.652 7.86254 143.027 7.08823C144.552 4.03792 143.52 1.48035 140.377 0.471397C139.439 0.166366 138.102 0.0490408 134.584 0.0255769C132.074 -0.021351 129.635 0.00212153 129.189 0.0490494ZM137.117 4.92955C137.187 5.0234 136.718 5.63346 136.061 6.29045L134.865 7.48712L131.042 6.73627C128.931 6.33739 126.727 5.9385 126.14 5.8681C124.827 5.68039 124.123 5.32843 124.968 5.28151C125.296 5.28151 126.868 5.11725 128.486 4.953C131.3 4.64797 136.812 4.62451 137.117 4.92955ZM71.5168 72.5292C76.2075 74.899 79.4441 78.8175 81.3204 84.355C83.6189 91.1361 81.2266 96.8378 76.0433 96.8847C73.3227 96.9082 70.9773 95.2188 69.5936 92.2389C68.2802 89.4232 67.6938 86.5606 67.5765 82.1259C67.4593 78.3248 67.6 76.4242 68.2333 72.7403L68.4912 71.2856L69.359 71.5906C69.8515 71.7548 70.8132 72.1772 71.5168 72.5292Z", fill: "currentColor" }) }),
+            /* @__PURE__ */ jsx("span", { children: "joheandroid@gmail.com" })
+          ] }),
+          /* @__PURE__ */ jsx(
+            motion.div,
+            {
+              className: "frame rounded-lg",
+              initial: { scale: 0.9 },
+              animate: { scale: 1 },
+              transition: { duration: 0.5 },
+              children: /* @__PURE__ */ jsx(
+                motion.img,
+                {
+                  className: "rounded-[24px]",
+                  src: perfil,
+                  alt: "perfil",
+                  initial: { y: 10 },
+                  animate: { y: 0 },
+                  transition: { duration: 0.5 }
+                }
+              )
+            }
+          )
+        ]
       }
     ),
     /* @__PURE__ */ jsx(presentacion, {}),
@@ -1112,7 +1122,11 @@ const AboutMe = () => {
                 transform: "none"
               },
               "data-framer-component-type": "RichTextContainer",
-              children: /* @__PURE__ */ jsx("p", { className: "framer-text framer-styles-preset-1kvyxmc open-sans", "data-styles-preset": "n7RLEGRKm", children: /* @__PURE__ */ jsx("span", { style: { display: "inline-block", opacity: 1, transform: "none", willChange: "transform" }, children: "Hi, i am josbert i am web developer frontend and creative enginer desing" }) })
+              children: /* @__PURE__ */ jsx("p", { className: "framer-text framer-styles-preset-1kvyxmc open-sans", "data-styles-preset": "n7RLEGRKm", children: /* @__PURE__ */ jsxs("span", { style: { display: "inline-block", opacity: 1, transform: "none", willChange: "transform" }, children: [
+                "Hi, I'm Josbert, a passionate Frontend Web Developer and ",
+                /* @__PURE__ */ jsx("br", {}),
+                " Creative Design Engineer, crafting visually stunning and user-friendly digital experiences."
+              ] }) })
             }
           ),
           /* @__PURE__ */ jsxs("span", { className: "text-sm open-sans", style: { display: "inline-block", opacity: 1, transform: "none", willChange: "transform" }, children: [
@@ -1321,7 +1335,7 @@ function HeaderUser() {
       children: /* @__PURE__ */ jsxs(
         motion.header,
         {
-          className: "relative backdrop-blur-lg z-10 flex h-10 w-full items-center !py-[35px] justify-between  rounded-t-2xl bg-ln-gray-25 px-4  lg:justify-start lg:rounded-3xl bg-ln-gray-header  lg:shadow-ln-xs",
+          className: "relative md:flex hidden backdrop-blur-lg z-10 flex h-10 w-full items-center !py-[35px] justify-between  rounded-t-2xl bg-ln-gray-25 px-4  lg:justify-start lg:rounded-3xl bg-ln-gray-header  lg:shadow-ln-xs",
           animate: scrolled ? { width: "100%", borderRadius: "0" } : { width: widthMobileHeader, borderRadius: "16px" },
           transition: { duration: 0.6, ease: easeOutQuint, delay: 0.1 },
           children: [
@@ -1334,7 +1348,7 @@ function HeaderUser() {
               }
             ),
             /* @__PURE__ */ jsx("div", { className: "flex items-center gap-2.5 pr-40 absolute top-2/4 transform -translate-y-2/4 ", children: /* @__PURE__ */ jsx("a", { className: "focus:outline-none", href: "/", children: /* @__PURE__ */ jsx("div", { className: "relative", children: /* @__PURE__ */ jsx("h1", { className: "text-title-h6 bg-clip-text bg-gradient-to-b from-black dark:from-white text-transparent antialiased relative text-5xl sm:text-7xl font-bold py-1 font-anurati", children: "JH" }) }) }) }),
-            /* @__PURE__ */ jsx("nav", { className: "flex justify-center items-center gap-2.5 lg:flex absolute top-2/4 transform -translate-y-2/4  right-0", children: links.map((link) => /* @__PURE__ */ jsx(
+            /* @__PURE__ */ jsx("nav", { className: "md:flex hidden justify-center items-center gap-2.5 lg:flex absolute top-2/4 transform -translate-y-2/4  right-0", children: links.map((link) => /* @__PURE__ */ jsx(
               ScrollLink,
               {
                 targetId: link.targetId,
@@ -1349,13 +1363,17 @@ function HeaderUser() {
   );
 }
 const boxShadowIntensity = Math.random() * 225 + 5;
+const isMobile = () => {
+  return window.innerWidth <= 768;
+};
 const asteroidVariants = {
   initial: (startPosition) => ({
     x: startPosition.x,
     y: startPosition.y,
     opacity: 1,
     scale: 0.5,
-    rotate: 30,
+    rotate: isMobile() ? 60 : 30,
+    // old 30 
     top: Math.random() * 30 + "vh",
     left: -100
   }),
@@ -1955,7 +1973,7 @@ function BackgroundPaths() {
         children: /* @__PURE__ */ jsxs(
           motion.div,
           {
-            className: "bg-[#1F1F20] rounded-2xl p-6 shadow-xl w-2/4 relative backdrop-blur-md overflow-hidden ",
+            className: "bg-[#1F1F20] rounded-2xl p-6 shadow-xl md:w-[30%] relative backdrop-blur-md overflow-hidden ",
             initial: { opacity: 0, y: 20, filter: "blur(10px)" },
             animate: { opacity: 1, y: 0, filter: "blur(0px)" },
             exit: { opacity: 0, y: 20, filter: "blur(10px)" },
@@ -1982,6 +2000,7 @@ function BackgroundPaths() {
                   /* @__PURE__ */ jsx(
                     "button",
                     {
+                      onClick: () => setIsOpen(false),
                       className: "cursor-pointer shadow-ln-xs px-12 py-3 overflow-hidden  rounded-full uppercase open-sans font-bold text-[14px] relative",
                       children: "Cerrar"
                     }
@@ -2206,14 +2225,428 @@ function BackgroundPaths() {
     ] }) })
   ] });
 }
+const text = {
+  initial: {
+    opacity: 0,
+    bottom: "30%"
+  },
+  enter: {
+    opacity: 1,
+    bottom: "50%",
+    transition: { duration: 0.75, delay: 0.35, ease: [0.76, 0, 0.24, 1] }
+  },
+  exit: {
+    opacity: 0,
+    bottom: "30%",
+    transition: { duration: 0.5, ease: [0.33, 1, 0.68, 1] }
+  }
+};
+const curve = (initialPath, targetPath) => {
+  return {
+    initial: {
+      d: initialPath
+    },
+    enter: {
+      d: targetPath,
+      transition: { duration: 0.75, ease: [0.76, 0, 0.24, 1] }
+    },
+    exit: {
+      d: initialPath,
+      transition: { duration: 0.75, ease: [0.76, 0, 0.24, 1] }
+    }
+  };
+};
+const anim = (variants) => {
+  return {
+    variants,
+    initial: "initial",
+    animate: "enter",
+    exit: "exit"
+  };
+};
+function MeteorHamburger() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [linesVisible, setLinesVisible] = useState([false, false, false]);
+  const [menuExpanded, setMenuExpanded] = useState(false);
+  const [dimensions, setDimensions] = useState({
+    width: null,
+    height: null
+  });
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 500);
+    return () => clearTimeout(timer);
+  }, []);
+  useEffect(() => {
+    function resize() {
+      setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    }
+    resize();
+    window.addEventListener("resize", resize);
+    if (isVisible) {
+      const timers = [
+        setTimeout(() => setLinesVisible((prev) => [true, prev[1], prev[2]]), 300),
+        setTimeout(() => setLinesVisible((prev) => [prev[0], true, prev[2]]), 500),
+        setTimeout(() => setLinesVisible((prev) => [prev[0], prev[1], true]), 700)
+      ];
+      return () => timers.forEach((timer) => clearTimeout(timer));
+    }
+  }, [isVisible]);
+  useEffect(() => {
+    if (isOpen) {
+      const timer = setTimeout(() => {
+        setMenuExpanded(true);
+      }, 600);
+      return () => clearTimeout(timer);
+    } else {
+      setMenuExpanded(false);
+    }
+  }, [isOpen]);
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+  const trailVariants = {
+    hidden: { opacity: 0, width: 0 },
+    visible: { opacity: [0, 0.8, 0], width: [0, 30, 0] }
+  };
+  return /* @__PURE__ */ jsxs(Fragment, { children: [
+    /* @__PURE__ */ jsx("div", { className: "relative z-50", children: /* @__PURE__ */ jsx(
+      motion.button,
+      {
+        className: "fixed top-4 right-4 z-50 flex h-12 w-12 flex-col items-center justify-center gap-1.5 rounded-full  p-3 text-white ",
+        onClick: toggleMenu,
+        initial: { scale: 0, opacity: 0, rotate: -180 },
+        animate: isVisible ? {
+          scale: 1,
+          opacity: 1,
+          rotate: 0
+        } : { scale: 0, opacity: 0, rotate: -180 },
+        transition: {
+          type: "spring",
+          stiffness: 260,
+          damping: 20
+        },
+        whileHover: { scale: 1.1 },
+        whileTap: { scale: 0.9 },
+        children: /* @__PURE__ */ jsxs("div", { className: "relative h-6 w-8", children: [
+          /* @__PURE__ */ jsxs("div", { className: "absolute left-0 top-0 flex items-center", children: [
+            /* @__PURE__ */ jsx(
+              motion.div,
+              {
+                className: "absolute right-full h-0.5 origin-right bg-gradient-to-l from-white to-transparent",
+                initial: "hidden",
+                animate: isOpen ? "visible" : "hidden",
+                variants: trailVariants,
+                transition: { duration: 0.3 }
+              }
+            ),
+            /* @__PURE__ */ jsx(
+              motion.div,
+              {
+                className: "h-0.5 w-8 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)]",
+                initial: { opacity: 0, x: -20 },
+                animate: {
+                  rotate: isOpen ? 45 : 0,
+                  y: isOpen ? 10 : 0,
+                  width: isOpen ? 32 : 32,
+                  x: linesVisible[0] ? isOpen ? 0 : [-4, 0] : -20,
+                  opacity: linesVisible[0] ? 1 : 0
+                },
+                transition: {
+                  duration: 0.4,
+                  x: {
+                    repeat: isOpen ? 0 : Number.POSITIVE_INFINITY,
+                    repeatType: "reverse",
+                    duration: 1.5,
+                    ease: "easeInOut"
+                  }
+                }
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxs("div", { className: "absolute left-0 top-2.5 flex items-center", children: [
+            /* @__PURE__ */ jsx(
+              motion.div,
+              {
+                className: "absolute right-full h-0.5 origin-right bg-gradient-to-l from-white to-transparent",
+                initial: "hidden",
+                animate: isOpen ? "visible" : "hidden",
+                variants: trailVariants,
+                transition: { duration: 0.3, delay: 0.1 }
+              }
+            ),
+            /* @__PURE__ */ jsx(
+              motion.div,
+              {
+                className: "h-0.5 w-8 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)]",
+                initial: { opacity: 0, x: -20 },
+                animate: {
+                  opacity: linesVisible[1] ? isOpen ? 0 : 1 : 0,
+                  x: linesVisible[1] ? isOpen ? 20 : [-2, 0] : -20
+                },
+                transition: {
+                  duration: 0.3,
+                  x: {
+                    repeat: isOpen ? 0 : Number.POSITIVE_INFINITY,
+                    repeatType: "reverse",
+                    duration: 2,
+                    ease: "easeInOut"
+                  }
+                }
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxs("div", { className: "absolute left-0 top-5 flex items-center", children: [
+            /* @__PURE__ */ jsx(
+              motion.div,
+              {
+                className: "absolute right-full h-0.5 origin-right bg-gradient-to-l from-white to-transparent",
+                initial: "hidden",
+                animate: isOpen ? "visible" : "hidden",
+                variants: trailVariants,
+                transition: { duration: 0.3, delay: 0.2 }
+              }
+            ),
+            /* @__PURE__ */ jsx(
+              motion.div,
+              {
+                className: "h-0.5 w-8 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)]",
+                initial: { opacity: 0, x: -20 },
+                animate: {
+                  rotate: isOpen ? -45 : 0,
+                  y: isOpen ? -10 : 0,
+                  width: isOpen ? 32 : 32,
+                  x: linesVisible[2] ? isOpen ? 0 : [-6, 0] : -20,
+                  opacity: linesVisible[2] ? 1 : 0
+                },
+                transition: {
+                  duration: 0.4,
+                  x: {
+                    repeat: isOpen ? 0 : Number.POSITIVE_INFINITY,
+                    repeatType: "reverse",
+                    duration: 1.8,
+                    ease: "easeInOut"
+                  }
+                }
+              }
+            )
+          ] })
+        ] })
+      }
+    ) }),
+    /* @__PURE__ */ jsx(AnimatePresence, { children: isOpen && dimensions.width && /* @__PURE__ */ jsxs(Fragment, { children: [
+      /* @__PURE__ */ jsx(
+        motion.div,
+        {
+          className: "fixed inset-0 z-40 backdrop-blur-md",
+          initial: { opacity: 0 },
+          animate: { opacity: 1 },
+          exit: { opacity: 0 },
+          transition: { duration: 0.3 }
+        }
+      ),
+      /* @__PURE__ */ jsxs(
+        motion.div,
+        {
+          className: "fixed inset-0 z-40 overflow-hidden",
+          initial: { opacity: 1 },
+          animate: { opacity: 1 },
+          exit: { opacity: 0, transition: { duration: 0.5 } },
+          children: [
+            /* @__PURE__ */ jsxs("div", { className: "absolute top-5 left-4", children: [
+              /* @__PURE__ */ jsx("a", { href: "https://github.com/josbert2", target: "_blank", className: " relative z-10 h-10 whitespace-nowrap rounded-md px-2 text-label-sm text-text-soft-400 outline-none flex items-center justify-center gap-1.5 transition duration-300 ease-out focus:outline-none data-[state=active]:text-text-strong-950 aspect-square", children: /* @__PURE__ */ jsxs(
+                "svg",
+                {
+                  xmlns: "http://www.w3.org/2000/svg",
+                  width: 34,
+                  height: 34,
+                  viewBox: "0 0 24 24",
+                  fill: "none",
+                  stroke: "currentColor",
+                  strokeWidth: 2,
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  className: "lucide lucide-github text-[#9b9b9b] w-5 h-5",
+                  children: [
+                    /* @__PURE__ */ jsx("path", { d: "M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" }),
+                    /* @__PURE__ */ jsx("path", { d: "M9 18c-4.51 2-5-2-7-2" })
+                  ]
+                }
+              ) }),
+              /* @__PURE__ */ jsx("a", { href: "https://www.instagram.com/josbert_ui/#", target: "_blank", className: " relative z-10 h-10 whitespace-nowrap rounded-md px-2 text-label-sm text-text-soft-400 outline-none flex items-center justify-center gap-1.5 transition duration-300 ease-out focus:outline-none data-[state=active]:text-text-strong-950 aspect-square", children: /* @__PURE__ */ jsxs(
+                "svg",
+                {
+                  xmlns: "http://www.w3.org/2000/svg",
+                  width: 34,
+                  height: 34,
+                  viewBox: "0 0 24 24",
+                  fill: "none",
+                  stroke: "currentColor",
+                  strokeWidth: 2,
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  className: "lucide lucide-instagram text-[#9b9b9b] w-5 h-5",
+                  children: [
+                    /* @__PURE__ */ jsx("rect", { width: 20, height: 20, x: 2, y: 2, rx: 5, ry: 5 }),
+                    /* @__PURE__ */ jsx("path", { d: "M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" }),
+                    /* @__PURE__ */ jsx("line", { x1: "17.5", x2: "17.51", y1: "6.5", y2: "6.5" })
+                  ]
+                }
+              ) }),
+              /* @__PURE__ */ jsx("a", { href: "https://www.linkedin.com/in/josbert-hernandez-317b77113/", target: "_blank", className: "   relative z-10 h-10 whitespace-nowrap rounded-md px-2 text-label-sm text-text-soft-400 outline-none flex items-center justify-center gap-1.5 transition duration-300 ease-out focus:outline-none data-[state=active]:text-text-strong-950 aspect-square", children: /* @__PURE__ */ jsxs(
+                "svg",
+                {
+                  xmlns: "http://www.w3.org/2000/svg",
+                  width: 34,
+                  height: 34,
+                  viewBox: "0 0 24 24",
+                  fill: "none",
+                  stroke: "currentColor",
+                  strokeWidth: 2,
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  className: "lucide lucide-linkedin text-[#9b9b9b] w-5 h-5",
+                  children: [
+                    /* @__PURE__ */ jsx("path", { d: "M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" }),
+                    /* @__PURE__ */ jsx("rect", { width: 4, height: 12, x: 2, y: 9 }),
+                    /* @__PURE__ */ jsx("circle", { cx: 4, cy: 4, r: 2 })
+                  ]
+                }
+              ) }),
+              /* @__PURE__ */ jsx("a", { href: "https://codepen.io/josbert", target: "_blank", className: "    relative z-10 h-10 whitespace-nowrap rounded-md px-2 text-label-sm text-text-soft-400 outline-none flex items-center justify-center gap-1.5 transition duration-300 ease-out focus:outline-none data-[state=active]:text-text-strong-950 aspect-square", children: /* @__PURE__ */ jsxs(
+                "svg",
+                {
+                  xmlns: "http://www.w3.org/2000/svg",
+                  width: 34,
+                  height: 34,
+                  viewBox: "0 0 24 24",
+                  fill: "none",
+                  stroke: "currentColor",
+                  strokeWidth: 2,
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  className: "lucide lucide-codepen text-[#9b9b9b] w-5 h-5",
+                  children: [
+                    /* @__PURE__ */ jsx("polygon", { points: "12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2" }),
+                    /* @__PURE__ */ jsx("line", { x1: 12, x2: 12, y1: 22, y2: "15.5" }),
+                    /* @__PURE__ */ jsx("polyline", { points: "22 8.5 12 15.5 2 8.5" }),
+                    /* @__PURE__ */ jsx("polyline", { points: "2 15.5 12 8.5 22 15.5" }),
+                    /* @__PURE__ */ jsx("line", { x1: 12, x2: 12, y1: 2, y2: "8.5" })
+                  ]
+                }
+              ) }),
+              /* @__PURE__ */ jsx("a", { href: "https://x.com/JosbertHern", target: "_blank", className: "   relative z-10 h-10 whitespace-nowrap rounded-md px-2 text-label-sm text-text-soft-400 outline-none flex items-center justify-center gap-1.5 transition duration-300 ease-out focus:outline-none data-[state=active]:text-text-strong-950 aspect-square", children: /* @__PURE__ */ jsx(
+                "svg",
+                {
+                  xmlns: "http://www.w3.org/2000/svg",
+                  width: 24,
+                  height: 24,
+                  viewBox: "0 0 24 24",
+                  fill: "none",
+                  stroke: "currentColor",
+                  strokeWidth: 2,
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  className: "lucide lucide-twitter text-[#9b9b9b] w-5 h-5",
+                  children: /* @__PURE__ */ jsx("path", { d: "M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" })
+                }
+              ) })
+            ] }),
+            /* @__PURE__ */ jsx(SVG, { width: dimensions.width, height: dimensions.height }),
+            /* @__PURE__ */ jsxs("div", { className: " flex flex-col gap-5", children: [
+              /* @__PURE__ */ jsx(
+                motion.p,
+                {
+                  className: "absolute left-1/2 z-50 -translate-x-1/2 -translate-y-1/2 text-center text-3xl font-bold text-white sm:text-4xl",
+                  ...anim(text),
+                  style: {
+                    translateY: -60
+                  },
+                  children: "01. Home"
+                }
+              ),
+              /* @__PURE__ */ jsx(
+                motion.p,
+                {
+                  className: "absolute left-1/2 z-50 -translate-x-1/2 -translate-y-1/2 text-center text-3xl font-bold text-white sm:text-4xl",
+                  ...anim(text),
+                  style: {
+                    translateY: -10
+                  },
+                  children: "02. About"
+                }
+              ),
+              /* @__PURE__ */ jsx(
+                motion.p,
+                {
+                  className: "absolute left-1/2 z-50 -translate-x-1/2 -translate-y-1/2 text-center text-3xl font-bold text-white sm:text-4xl",
+                  ...anim(text),
+                  style: {
+                    translateY: 40
+                  },
+                  children: "03. Contact"
+                }
+              )
+            ] }),
+            /* @__PURE__ */ jsx(
+              motion.div,
+              {
+                className: "absolute inset-x-0 bottom-0 z-40 flex h-[60%] items-center justify-center px-4 pb-8 pt-4",
+                initial: { opacity: 0 },
+                animate: { opacity: 1 },
+                exit: { opacity: 0 },
+                transition: { delay: 0.5, duration: 0.3 },
+                children: /* @__PURE__ */ jsx("div", { className: "w-full max-w-md space-y-6" })
+              }
+            )
+          ]
+        }
+      )
+    ] }) })
+  ] });
+}
+const SVG = ({ width, height }) => {
+  const initialPath = `
+      M0 ${height}
+      Q${width / 2} ${height}  ${width} ${height}
+      L${width} 0
+      L0 0
+      Z
+    `;
+  const targetPath = `
+      M0 ${height}
+      Q${width / 2} ${height - 120} ${width} ${height}
+      L${width} 0
+      L0 0
+      Z
+    `;
+  return /* @__PURE__ */ jsx(motion.div, { className: "absolute inset-0", children: /* @__PURE__ */ jsx("svg", { className: "h-full w-full", viewBox: `0 0 ${width} ${height}`, preserveAspectRatio: "none", children: /* @__PURE__ */ jsx(motion.path, { fill: "#5454543d", ...anim(curve(initialPath, targetPath)) }) }) });
+};
 function Separator() {
   return /* @__PURE__ */ jsx(Fragment, { children: /* @__PURE__ */ jsx("div", { className: "container mt-16 pointer-events-none !pl-0 !pr-0 -z-10  select-none mac:block", children: /* @__PURE__ */ jsx("div", { className: "border-t border-color w-full" }) }) });
 }
 function buttonSection(props) {
   return /* @__PURE__ */ jsx("div", { className: "framer-3R4K1 italic text-framer mb-0 text-gray-500 text-title-h3 text-3xl font-bold", "data-border": "true", children: props.title });
 }
+const butacas = "/assets/butacas-sN3IKsyG.png";
+const stylo = "/assets/stylo-BtjpZnxK.png";
 const bookforce = "/assets/bookforce-C5rTwJUu.webp";
-const crypto = "/assets/crypto-BI2GNs-0.webp";
+const crypto = "/assets/crypto-wmM7TGuc.webp";
 const mill = "/assets/mill-BGjeh5GI.webp";
 const llantas = "/assets/llantas-D2uYB-db.webp";
 const adagio = "/assets/adagio-Cx6QiWxU.webp";
@@ -2246,17 +2679,403 @@ const iconDavivivienda = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAF8AAABT
 const iconSavefood = "/assets/savefood-DsIeCxXo.png";
 const iconBlackcoffee = "/assets/black-Bzyu5A8m.png";
 const test = "/assets/test-BDFWhwUF.webp";
+const ProjectCard = memo(({ project, index, isFeatured }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  return /* @__PURE__ */ jsx(
+    "div",
+    {
+      className: "framer-1hhlnuq-container",
+      style: {
+        opacity: "1",
+        transform: "perspective(1200px)"
+      },
+      children: /* @__PURE__ */ jsxs(
+        "a",
+        {
+          className: "framer-rtsKZ framer-6pxgjl framer-v-6pxgjl framer-d4tf0f",
+          onMouseEnter: () => setIsHovered(true),
+          onMouseLeave: () => setIsHovered(false),
+          href: project.url,
+          style: {
+            backgroundColor: "rgba(21, 22, 23, 0)",
+            opacity: "1",
+            width: "100%"
+          },
+          children: [
+            /* @__PURE__ */ jsx(
+              "div",
+              {
+                className: "framer-1edw8qi-container",
+                style: {
+                  opacity: isFeatured ? "1" : "0"
+                },
+                children: /* @__PURE__ */ jsx("div", { style: { display: "contents" }, children: /* @__PURE__ */ jsx(
+                  "svg",
+                  {
+                    color: "rgba(255, 255, 255, 0.6)",
+                    focusable: "false",
+                    style: {
+                      color: "rgba(255, 255, 255, 0.6)",
+                      display: "inline-block",
+                      fill: "rgba(255, 255, 255, 0.6)",
+                      flexShrink: "0",
+                      height: "100%",
+                      userSelect: "none",
+                      width: "100%"
+                    },
+                    viewBox: "0 0 256 256",
+                    xmlns: "http://www.w3.org/2000/svg",
+                    children: /* @__PURE__ */ jsx("g", { color: "rgba(255, 255, 255, 0.6)", children: /* @__PURE__ */ jsx("path", { d: "M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z" }) })
+                  }
+                ) })
+              }
+            ),
+            /* @__PURE__ */ jsx(
+              motion.div,
+              {
+                className: "framer-2hmlbu",
+                "data-framer-name": "BlurImage",
+                animate: { opacity: isHovered ? 1 : 0 },
+                transition: { duration: 0.3 },
+                style: {
+                  borderRadius: "18px",
+                  filter: "brightness(2) saturate(2) blur(40px)",
+                  opacity: "0",
+                  willChange: "opacity"
+                },
+                children: /* @__PURE__ */ jsx(
+                  "div",
+                  {
+                    "data-framer-background-image-wrapper": "true",
+                    style: {
+                      borderRadius: "inherit",
+                      bottom: "0",
+                      left: "0",
+                      position: "absolute",
+                      right: "0",
+                      top: "0"
+                    },
+                    children: /* @__PURE__ */ jsx(
+                      "img",
+                      {
+                        src: project.image,
+                        alt: "",
+                        loading: "lazy",
+                        sizes: "calc(min(473px, 100vw) - 2px)",
+                        style: {
+                          borderRadius: "inherit",
+                          display: "block",
+                          height: "100%",
+                          imageRendering: "auto",
+                          objectFit: "cover",
+                          objectPosition: "center",
+                          width: "100%"
+                        }
+                      }
+                    )
+                  }
+                )
+              }
+            ),
+            /* @__PURE__ */ jsxs(
+              "div",
+              {
+                className: "framer-11vnvy3",
+                "data-border": "true",
+                "data-framer-name": "GlassCard",
+                style: {
+                  "--border-bottom-width": "1px",
+                  "--border-color": "rgba(255, 255, 255, 0.06)",
+                  "--border-left-width": "1px",
+                  "--border-right-width": "1px",
+                  "--border-style": "solid",
+                  "--border-top-width": "1px",
+                  backdropFilter: "blur(10px)",
+                  backgroundColor: "rgba(255, 255, 255, 0.02)",
+                  borderRadius: "20px",
+                  boxShadow: "rgba(0, 0, 0, 0.114) 0px 0.602187px 1.08394px -0.416667px, rgba(0, 0, 0, 0.15) 0px 2.28853px 4.11936px -0.833333px, rgba(0, 0, 0, 0.306) 0px 10px 18px -1.25px, rgba(0, 0, 0, 0.58) 0px -1px 1px 0px inset",
+                  opacity: "1"
+                },
+                children: [
+                  /* @__PURE__ */ jsx(
+                    "div",
+                    {
+                      className: "framer-1p6numl",
+                      "data-framer-name": "BadgeWrapper",
+                      style: { opacity: "1" },
+                      children: /* @__PURE__ */ jsxs(
+                        "div",
+                        {
+                          className: "framer-1d5va92",
+                          "data-framer-name": "Badge",
+                          style: {
+                            backgroundColor: "rgba(255, 255, 255, 0.05)",
+                            borderRadius: "7px",
+                            opacity: "1"
+                          },
+                          children: [
+                            /* @__PURE__ */ jsx(
+                              "div",
+                              {
+                                className: "framer-1bn53k8",
+                                "data-framer-name": "Fill",
+                                style: {
+                                  backgroundColor: "rgba(0, 0, 0, 0.4)",
+                                  borderRadius: "6px",
+                                  opacity: "1"
+                                }
+                              }
+                            ),
+                            /* @__PURE__ */ jsx(
+                              "div",
+                              {
+                                className: "framer-1gqbim0",
+                                "data-framer-component-type": "RichTextContainer",
+                                style: {
+                                  "--extracted-r6o4lv": "rgb(173, 173, 173)",
+                                  "--framer-link-text-color": "rgb(0, 153, 255)",
+                                  "--framer-link-text-decoration": "underline",
+                                  display: "flex",
+                                  flexDirection: "column",
+                                  flexShrink: "0",
+                                  justifyContent: "flex-start",
+                                  opacity: "1",
+                                  outline: "none",
+                                  transform: "none"
+                                },
+                                children: /* @__PURE__ */ jsx(
+                                  "p",
+                                  {
+                                    className: "framer-text font-geist",
+                                    style: {
+                                      "--framer-font-size": "12px",
+                                      "--framer-font-weight": "500",
+                                      "--framer-letter-spacing": "-0.01em",
+                                      "--framer-text-color": "var(--extracted-r6o4lv, rgb(173, 173, 173))"
+                                    },
+                                    children: project.type
+                                  }
+                                )
+                              }
+                            )
+                          ]
+                        }
+                      )
+                    }
+                  ),
+                  /* @__PURE__ */ jsxs(
+                    "div",
+                    {
+                      className: "framer-1w58y41",
+                      "data-framer-name": "Content",
+                      style: { opacity: "1" },
+                      children: [
+                        /* @__PURE__ */ jsx(
+                          "div",
+                          {
+                            className: "framer-1hrzvqf",
+                            "data-framer-name": "Icon",
+                            style: {
+                              borderRadius: "14px",
+                              boxShadow: "rgba(0, 0, 0, 0.08) 0px 0.482901px 1.06238px -0.5px, rgba(0, 0, 0, 0.23) 0px 4px 8.8px -1px, rgba(255, 255, 255, 0.06) 0px 0px 0px 1px",
+                              filter: "grayscale(1)",
+                              opacity: "1"
+                            },
+                            children: /* @__PURE__ */ jsx(
+                              "div",
+                              {
+                                "data-framer-background-image-wrapper": "true",
+                                style: {
+                                  borderRadius: "inherit",
+                                  bottom: "0",
+                                  left: "0",
+                                  position: "absolute",
+                                  right: "0",
+                                  top: "0"
+                                },
+                                children: /* @__PURE__ */ jsx(
+                                  "img",
+                                  {
+                                    src: project.icon,
+                                    alt: "",
+                                    loading: "lazy",
+                                    sizes: "44px",
+                                    style: {
+                                      borderRadius: "inherit",
+                                      display: "block",
+                                      height: "100%",
+                                      imageRendering: "auto",
+                                      objectFit: "cover",
+                                      objectPosition: "center",
+                                      width: "100%"
+                                    }
+                                  }
+                                )
+                              }
+                            )
+                          }
+                        ),
+                        /* @__PURE__ */ jsx(
+                          "div",
+                          {
+                            className: "framer-s6ljvk",
+                            "data-framer-component-type": "RichTextContainer",
+                            style: {
+                              "--extracted-r6o4lv": "rgb(255, 255, 255)",
+                              "--framer-link-text-color": "rgb(0, 153, 255)",
+                              "--framer-link-text-decoration": "underline",
+                              display: "flex",
+                              flexDirection: "column",
+                              flexShrink: "0",
+                              justifyContent: "flex-start",
+                              opacity: "1",
+                              outline: "none",
+                              textShadow: "rgba(0, 0, 0, 0.2) 0px 4px 9px",
+                              transform: "none"
+                            },
+                            children: /* @__PURE__ */ jsx(
+                              "p",
+                              {
+                                className: "framer-text font-geist",
+                                style: {
+                                  "--framer-font-size": "38px",
+                                  "--framer-font-weight": "700",
+                                  "--framer-letter-spacing": "-0.03em",
+                                  "--framer-line-height": "1em",
+                                  "--framer-text-color": "var(--extracted-r6o4lv, rgb(255, 255, 255))"
+                                },
+                                children: /* @__PURE__ */ jsx(
+                                  "span",
+                                  {
+                                    className: "framer-text",
+                                    "data-text-fill": "true",
+                                    style: {
+                                      backgroundImage: "linear-gradient(0deg, rgb(199, 199, 199) 0%, rgb(250, 250, 250) 100%)"
+                                    },
+                                    children: project.title
+                                  }
+                                )
+                              }
+                            )
+                          }
+                        ),
+                        /* @__PURE__ */ jsx(
+                          "div",
+                          {
+                            className: "framer-1g9epbg",
+                            "data-framer-name": "Byline",
+                            style: { opacity: "1" },
+                            children: /* @__PURE__ */ jsx(
+                              "div",
+                              {
+                                className: "framer-1w079fg",
+                                "data-framer-component-type": "RichTextContainer",
+                                style: {
+                                  "--extracted-r6o4lv": "var(--token-d9114fe5-ccf8-4f28-9a11-6445c9c3d500, rgba(255, 255, 255, 0.7))",
+                                  "--framer-link-text-color": "rgb(0, 153, 255)",
+                                  "--framer-link-text-decoration": "underline",
+                                  display: "flex",
+                                  flexDirection: "column",
+                                  flexShrink: "0",
+                                  justifyContent: "flex-start",
+                                  opacity: "1",
+                                  outline: "none",
+                                  transform: "none"
+                                },
+                                children: /* @__PURE__ */ jsx(
+                                  "p",
+                                  {
+                                    className: "framer-text font-geist",
+                                    style: {
+                                      "--framer-font-size": "15px",
+                                      "--framer-line-height": "1.6em",
+                                      "--framer-font-weight": "400",
+                                      "--framer-text-color": "var(--extracted-r6o4lv, var(--token-d9114fe5-ccf8-4f28-9a11-6445c9c3d500, rgba(255, 255, 255, 0.7)))"
+                                    },
+                                    children: project.description
+                                  }
+                                )
+                              }
+                            )
+                          }
+                        )
+                      ]
+                    }
+                  )
+                ]
+              }
+            ),
+            /* @__PURE__ */ jsx(
+              "div",
+              {
+                className: "framer-ejjo2t",
+                "data-framer-name": "ImageWrap",
+                style: {
+                  borderRadius: "18px",
+                  opacity: "1"
+                },
+                children: /* @__PURE__ */ jsx(
+                  "div",
+                  {
+                    className: "framer-q1jd2k",
+                    "data-framer-name": "Image",
+                    style: {
+                      borderRadius: "18px",
+                      opacity: "1",
+                      transform: "perspective(1200px)"
+                    },
+                    children: /* @__PURE__ */ jsx(
+                      "div",
+                      {
+                        "data-framer-background-image-wrapper": "true",
+                        style: {
+                          borderRadius: "inherit",
+                          bottom: "0",
+                          left: "0",
+                          position: "absolute",
+                          right: "0",
+                          top: "0"
+                        },
+                        children: /* @__PURE__ */ jsx(
+                          "img",
+                          {
+                            src: project.image,
+                            alt: "project preview",
+                            loading: "lazy",
+                            style: {
+                              borderRadius: "inherit",
+                              display: "block",
+                              height: "100%",
+                              imageRendering: "auto",
+                              objectFit: "cover",
+                              objectPosition: "center",
+                              width: "100%"
+                            }
+                          }
+                        )
+                      }
+                    )
+                  }
+                )
+              }
+            )
+          ]
+        }
+      )
+    }
+  );
+});
+ProjectCard.displayName = "ProjectCard";
 function Work() {
-  const [hoveredIndex, setHoveredIndex] = useState(null);
   const [ref, inView] = useInView({
     threshold: 0.2,
     triggerOnce: true
   });
   const [itemsToShow, setItemsToShow] = useState(4);
-  const handleLoadMore = () => {
+  const handleLoadMore = useCallback(() => {
     setItemsToShow((prev) => prev + 6);
-  };
-  const dataProject = [
+  }, []);
+  const dataProject = useMemo(() => [
     {
       title: "Entrekids",
       description: "Marketplate para actividades infantiles",
@@ -2430,6 +3249,7 @@ function Work() {
       description: "Natural Teas",
       image: adagio,
       type: "Web APP",
+      icon: iconBlackcoffee,
       url: "https://adagio-zeta.vercel.app/",
       repository: "https://github.com/josbert2/adagio"
     }
@@ -2441,449 +3261,148 @@ function Work() {
     // https://github.com/josbert2/josdocs
     // https://github.com/josbert2/bytebox
     // https://github.com/josbert2/munder
-  ];
-  const visibleProjects = dataProject.slice(0, itemsToShow);
-  return /* @__PURE__ */ jsx(Fragment, { children: /* @__PURE__ */ jsx("section", { id: "works", ref, className: "container md:px-0 mt-20 pb-20 relative  sm:mt-20", children: /* @__PURE__ */ jsxs("div", { className: "px-10 md:px-20", children: [
-    /* @__PURE__ */ jsxs(
-      motion.div,
-      {
-        className: "btn-title relative w-full mb-16 flex justify-start container-btn",
-        initial: { opacity: 0, x: -20 },
-        animate: inView ? { opacity: 1, x: 0 } : {},
-        transition: { duration: 0.5, ease: [0.17, 0.55, 0.55, 1] },
-        children: [
-          /* @__PURE__ */ jsx("div", { className: "framer-1u3alye" }),
-          /* @__PURE__ */ jsx(buttonSection, { title: "Works" }),
-          /* @__PURE__ */ jsx("div", { className: "framer-4ek1z5" })
-        ]
-      }
-    ),
-    /* @__PURE__ */ jsx("div", { className: "framer-1lrue9j", children: visibleProjects.map((project, index) => /* @__PURE__ */ jsx(
-      "div",
-      {
-        className: "framer-1hhlnuq-container",
-        style: {
-          opacity: "1",
-          transform: "perspective(1200px)"
-        },
-        children: /* @__PURE__ */ jsxs(
-          "a",
-          {
-            className: "framer-rtsKZ framer-6pxgjl framer-v-6pxgjl framer-d4tf0f",
-            onMouseEnter: () => setHoveredIndex(index),
-            onMouseLeave: () => setHoveredIndex(null),
-            href: project.url,
-            style: {
-              backgroundColor: "rgba(21, 22, 23, 0)",
-              opacity: "1",
-              width: "100%"
-            },
-            children: [
-              /* @__PURE__ */ jsx(
-                "div",
-                {
-                  className: "framer-1edw8qi-container",
-                  style: {
-                    opacity: "0"
-                  },
-                  children: /* @__PURE__ */ jsx(
-                    "div",
-                    {
-                      style: {
-                        display: "contents"
-                      },
-                      children: /* @__PURE__ */ jsx(
-                        "svg",
-                        {
-                          color: "rgba(0, 0, 0, 0.19)",
-                          focusable: "false",
-                          style: {
-                            color: "rgba(0, 0, 0, 0.19)",
-                            display: "inline-block",
-                            fill: "rgba(0, 0, 0, 0.19)",
-                            flexShrink: "0",
-                            height: "100%",
-                            userSelect: "none",
-                            width: "100%"
-                          },
-                          viewBox: "0 0 256 256",
-                          xmlns: "http://www.w3.org/2000/svg",
-                          children: /* @__PURE__ */ jsx("g", { color: "rgba(0, 0, 0, 0.19)", children: /* @__PURE__ */ jsx("path", { d: "M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z" }) })
-                        }
-                      )
-                    }
-                  )
-                }
-              ),
-              /* @__PURE__ */ jsx(
-                motion.div,
-                {
-                  className: "framer-2hmlbu",
-                  "data-framer-name": "BlurImage",
-                  animate: { opacity: hoveredIndex === index ? 1 : 0 },
-                  initial: { opacity: 0 },
-                  whileHover: { opacity: 1 },
-                  style: {
-                    borderRadius: "18px",
-                    filter: "brightness(2) saturate(2) blur(80px)",
-                    opacity: "0"
-                  },
-                  children: /* @__PURE__ */ jsx(
-                    "div",
-                    {
-                      "data-framer-background-image-wrapper": "true",
-                      style: {
-                        borderRadius: "inherit",
-                        bottom: "0",
-                        left: "0",
-                        position: "absolute",
-                        right: "0",
-                        top: "0"
-                      },
-                      children: /* @__PURE__ */ jsx(
-                        "img",
-                        {
-                          src: project.image,
-                          alt: "",
-                          sizes: "calc(min(473px, 100vw) - 2px)",
-                          style: {
-                            borderRadius: "inherit",
-                            display: "block",
-                            height: "100%",
-                            imageRendering: "auto",
-                            objectFit: "cover",
-                            objectPosition: "center",
-                            width: "100%"
-                          }
-                        }
-                      )
-                    }
-                  )
-                }
-              ),
-              /* @__PURE__ */ jsxs(
-                "div",
-                {
-                  className: "framer-11vnvy3",
-                  "data-border": "true",
-                  "data-framer-name": "GlassCard",
-                  style: {
-                    "--border-bottom-width": "1px",
-                    "--border-color": "rgba(255, 255, 255, 0.06)",
-                    "--border-left-width": "1px",
-                    "--border-right-width": "1px",
-                    "--border-style": "solid",
-                    "--border-top-width": "1px",
-                    backdropFilter: "blur(10px)",
-                    backgroundColor: "rgba(255, 255, 255, 0.02)",
-                    borderRadius: "20px",
-                    boxShadow: "rgba(0, 0, 0, 0.114) 0px 0.602187px 1.08394px -0.416667px, rgba(0, 0, 0, 0.15) 0px 2.28853px 4.11936px -0.833333px, rgba(0, 0, 0, 0.306) 0px 10px 18px -1.25px, rgba(0, 0, 0, 0.58) 0px -1px 1px 0px inset",
-                    opacity: "1"
-                  },
-                  children: [
-                    /* @__PURE__ */ jsx(
-                      "div",
-                      {
-                        className: "framer-1p6numl",
-                        "data-framer-name": "BadgeWrapper",
-                        style: {
-                          opacity: "1"
-                        },
-                        children: /* @__PURE__ */ jsxs(
-                          "div",
-                          {
-                            className: "framer-1d5va92",
-                            "data-framer-name": "Badge",
-                            style: {
-                              backgroundColor: "rgba(255, 255, 255, 0.05)",
-                              borderRadius: "7px",
-                              opacity: "1"
-                            },
-                            children: [
-                              /* @__PURE__ */ jsx(
-                                "div",
-                                {
-                                  className: "framer-1bn53k8",
-                                  "data-framer-name": "Fill",
-                                  style: {
-                                    backgroundColor: "rgba(0, 0, 0, 0.4)",
-                                    borderRadius: "6px",
-                                    opacity: "1"
-                                  }
-                                }
-                              ),
-                              /* @__PURE__ */ jsx(
-                                "div",
-                                {
-                                  className: "framer-1gqbim0",
-                                  "data-framer-component-type": "RichTextContainer",
-                                  style: {
-                                    "--extracted-r6o4lv": "rgb(173, 173, 173)",
-                                    "--framer-link-text-color": "rgb(0, 153, 255)",
-                                    "--framer-link-text-decoration": "underline",
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    flexShrink: "0",
-                                    justifyContent: "flex-start",
-                                    opacity: "1",
-                                    outline: "none",
-                                    transform: "none"
-                                  },
-                                  children: /* @__PURE__ */ jsx(
-                                    "p",
-                                    {
-                                      className: "framer-text",
-                                      style: {
-                                        "--font-selector": "RlM7R2VuZXJhbCBTYW5zLW1lZGl1bQ==",
-                                        "--framer-font-family": "'General Sans', 'General Sans Placeholder', sans-serif",
-                                        "--framer-font-size": "12px",
-                                        "--framer-font-weight": "500",
-                                        "--framer-letter-spacing": "-0.01em",
-                                        "--framer-text-color": "var(--extracted-r6o4lv, rgb(173, 173, 173))"
-                                      },
-                                      children: "iOS App"
-                                    }
-                                  )
-                                }
-                              )
-                            ]
-                          }
-                        )
-                      }
-                    ),
-                    /* @__PURE__ */ jsxs(
-                      "div",
-                      {
-                        className: "framer-1w58y41",
-                        "data-framer-name": "Content",
-                        style: {
-                          opacity: "1"
-                        },
-                        children: [
-                          /* @__PURE__ */ jsx(
-                            "div",
-                            {
-                              className: "framer-1hrzvqf",
-                              "data-framer-name": "Icon",
-                              style: {
-                                borderRadius: "14px",
-                                boxShadow: "rgba(0, 0, 0, 0.08) 0px 0.482901px 1.06238px -0.5px, rgba(0, 0, 0, 0.23) 0px 4px 8.8px -1px, rgba(255, 255, 255, 0.06) 0px 0px 0px 1px",
-                                filter: "grayscale(1)",
-                                opacity: "1"
-                              },
-                              children: /* @__PURE__ */ jsx(
-                                "div",
-                                {
-                                  "data-framer-background-image-wrapper": "true",
-                                  style: {
-                                    borderRadius: "inherit",
-                                    bottom: "0",
-                                    left: "0",
-                                    position: "absolute",
-                                    right: "0",
-                                    top: "0"
-                                  },
-                                  children: /* @__PURE__ */ jsx(
-                                    "img",
-                                    {
-                                      src: project.icon,
-                                      alt: "",
-                                      sizes: "44px",
-                                      style: {
-                                        borderRadius: "inherit",
-                                        display: "block",
-                                        height: "100%",
-                                        imageRendering: "auto",
-                                        objectFit: "cover",
-                                        objectPosition: "center",
-                                        width: "100%"
-                                      }
-                                    }
-                                  )
-                                }
-                              )
-                            }
-                          ),
-                          /* @__PURE__ */ jsx(
-                            "div",
-                            {
-                              className: "framer-s6ljvk",
-                              "data-framer-component-type": "RichTextContainer",
-                              style: {
-                                "--extracted-r6o4lv": "rgb(255, 255, 255)",
-                                "--framer-link-text-color": "rgb(0, 153, 255)",
-                                "--framer-link-text-decoration": "underline",
-                                display: "flex",
-                                flexDirection: "column",
-                                flexShrink: "0",
-                                justifyContent: "flex-start",
-                                opacity: "1",
-                                outline: "none",
-                                textShadow: "rgba(0, 0, 0, 0.2) 0px 4px 9px",
-                                transform: "none"
-                              },
-                              children: /* @__PURE__ */ jsx(
-                                "p",
-                                {
-                                  className: "framer-text open-sans",
-                                  style: {
-                                    "--framer-font-size": "32px",
-                                    "--framer-font-weight": "600",
-                                    "--framer-letter-spacing": "-0.02em",
-                                    "--framer-line-height": "1em",
-                                    "--framer-text-color": "var(--extracted-r6o4lv, rgb(255, 255, 255))"
-                                  },
-                                  children: /* @__PURE__ */ jsx(
-                                    "span",
-                                    {
-                                      className: "framer-text",
-                                      "data-text-fill": "true",
-                                      style: {
-                                        backgroundImage: "linear-gradient(0deg, rgb(199, 199, 199) 0%, rgb(250, 250, 250) 100%)"
-                                      },
-                                      children: project.title
-                                    }
-                                  )
-                                }
-                              )
-                            }
-                          ),
-                          /* @__PURE__ */ jsx(
-                            "div",
-                            {
-                              className: "framer-1g9epbg",
-                              "data-framer-name": "Byline",
-                              style: {
-                                opacity: "1"
-                              },
-                              children: /* @__PURE__ */ jsx(
-                                "div",
-                                {
-                                  className: "framer-1w079fg",
-                                  "data-framer-component-type": "RichTextContainer",
-                                  style: {
-                                    "--extracted-r6o4lv": "var(--token-d9114fe5-ccf8-4f28-9a11-6445c9c3d500, rgba(255, 255, 255, 0.7))",
-                                    "--framer-link-text-color": "rgb(0, 153, 255)",
-                                    "--framer-link-text-decoration": "underline",
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    flexShrink: "0",
-                                    justifyContent: "flex-start",
-                                    opacity: "1",
-                                    outline: "none",
-                                    transform: "none"
-                                  },
-                                  children: /* @__PURE__ */ jsx(
-                                    "p",
-                                    {
-                                      className: "framer-text open-sans",
-                                      style: {
-                                        "--font-selector": "RlM7R2VuZXJhbCBTYW5zLXJlZ3VsYXI=",
-                                        "--framer-font-family": "'General Sans', 'General Sans Placeholder', sans-serif",
-                                        "--framer-font-size": "14px",
-                                        "--framer-line-height": "1.5em",
-                                        "--framer-text-color": "var(--extracted-r6o4lv, var(--token-d9114fe5-ccf8-4f28-9a11-6445c9c3d500, rgba(255, 255, 255, 0.7)))"
-                                      },
-                                      children: project.description
-                                    }
-                                  )
-                                }
-                              )
-                            }
-                          )
-                        ]
-                      }
-                    )
-                  ]
-                }
-              ),
-              /* @__PURE__ */ jsx(
-                "div",
-                {
-                  className: "framer-ejjo2t",
-                  "data-framer-name": "ImageWrap",
-                  style: {
-                    borderRadius: "18px",
-                    opacity: "1"
-                  },
-                  children: /* @__PURE__ */ jsx(
-                    "div",
-                    {
-                      className: "framer-q1jd2k",
-                      "data-framer-name": "Image",
-                      style: {
-                        borderRadius: "18px",
-                        opacity: "1",
-                        transform: "perspective(1200px)"
-                      },
-                      children: /* @__PURE__ */ jsx(
-                        "div",
-                        {
-                          "data-framer-background-image-wrapper": "true",
-                          style: {
-                            borderRadius: "inherit",
-                            bottom: "0",
-                            left: "0",
-                            position: "absolute",
-                            right: "0",
-                            top: "0"
-                          },
-                          children: /* @__PURE__ */ jsx(
-                            "img",
-                            {
-                              src: project.image,
-                              alt: "he",
-                              loading: "lazy",
-                              placeholder: "blur",
-                              blurDataURL: project.image.src,
-                              style: {
-                                borderRadius: "inherit",
-                                display: "block",
-                                height: "100%",
-                                imageRendering: "auto",
-                                objectFit: "cover",
-                                objectPosition: "center",
-                                width: "100%"
-                              }
-                            }
-                          )
-                        }
-                      )
-                    }
-                  )
-                }
-              )
-            ]
-          }
-        )
-      },
-      index
-    )) }),
-    itemsToShow < dataProject.length && /* @__PURE__ */ jsx("div", { className: "text-center justify-center mt-8", children: /* @__PURE__ */ jsxs(
-      "button",
-      {
-        className: "bg-ln-gray-header uppercase shadow-ln-xs px-12 py-3 overflow-hidden  rounded-full uppercase open-sans font-bold text-[14px] relative",
-        onClick: handleLoadMore,
-        children: [
-          "Cargar más",
-          /* @__PURE__ */ jsx(
-            motion.div,
+  ], []);
+  const featuresProjects = useMemo(() => [
+    {
+      title: "Butacas",
+      description: "Navigate the world of web technology",
+      image: butacas,
+      type: "Web APP",
+      icon: iconBlackcoffee,
+      url: "https://josbert2.github.io/teas/",
+      repository: "https://josbert2.github.io/teas/"
+      // https://github.com/josbert2/landings
+    },
+    {
+      title: "Stylo",
+      description: "Editor de código en vivo con preview en tiempo real",
+      image: stylo,
+      type: "Web APP",
+      icon: iconApp,
+      url: "#",
+      repository: "#"
+    }
+  ], []);
+  const visibleProjects = useMemo(() => dataProject.slice(0, itemsToShow), [dataProject, itemsToShow]);
+  return /* @__PURE__ */ jsxs(Fragment, { children: [
+    /* @__PURE__ */ jsx("div", { children: /* @__PURE__ */ jsxs("div", { className: "px-0 md:px-20", children: [
+      /* @__PURE__ */ jsxs(
+        motion.div,
+        {
+          className: "btn-title relative w-full mb-16 flex justify-start container-btn",
+          initial: { opacity: 0, x: -20 },
+          animate: inView ? { opacity: 1, x: 0 } : {},
+          transition: { duration: 0.5, ease: [0.17, 0.55, 0.55, 1] },
+          children: [
+            /* @__PURE__ */ jsx("div", { className: "framer-1u3alye" }),
+            /* @__PURE__ */ jsx(buttonSection, { title: "Feature works" }),
+            /* @__PURE__ */ jsx("div", { className: "framer-4ek1z5" })
+          ]
+        }
+      ),
+      /* @__PURE__ */ jsx("div", { className: "grid md:grid-cols-2 gap-6 md:gap-8 md:px-20", children: featuresProjects.map((project, index) => /* @__PURE__ */ jsx(
+        "div",
+        {
+          className: "group relative p-[1px] rounded-3xl transition-all duration-500",
+          style: {
+            background: "linear-gradient(90deg, rgba(255,255,255,0.2), rgba(255,255,255,0.05), rgba(255,255,255,0.2), rgba(255,255,255,0.05))",
+            backgroundSize: "200% 100%",
+            animation: "gradient 3s ease infinite"
+          },
+          children: /* @__PURE__ */ jsxs(
+            "a",
             {
-              className: "absolute z-[9999] h-[1.5px] w-[50%] left-2/4 transform -translate-x-2/4 inset-x-1 top-[.3px] -bottom-px bg-gradient-to-r from-[#EDD4BA]/0 via-[#EDD4BA]/40 to-[#EDD4BA]/0",
-              style: { top: "auto", bottom: "0px" },
-              initial: { opacity: 0, width: "0%" },
-              animate: { opacity: 1, width: "50%" },
-              exit: { opacity: 0, width: "0%" },
-              transition: { duration: 3.2, ease: "easeInOut" }
+              href: project.url,
+              className: "block relative overflow-hidden rounded-3xl transition-transform duration-500 hover:scale-[1.01]",
+              children: [
+                /* @__PURE__ */ jsxs("div", { className: "relative h-[450px] md:h-[550px] w-full overflow-hidden rounded-3xl", children: [
+                  /* @__PURE__ */ jsx("div", { className: "absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent z-10" }),
+                  /* @__PURE__ */ jsx(
+                    "img",
+                    {
+                      src: project.image,
+                      alt: project.title,
+                      className: "w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    }
+                  ),
+                  /* @__PURE__ */ jsx("div", { className: "absolute top-6 right-6 z-20 opacity-70 group-hover:opacity-100 transition-opacity", children: /* @__PURE__ */ jsx(
+                    "svg",
+                    {
+                      width: "32",
+                      height: "32",
+                      viewBox: "0 0 256 256",
+                      fill: "white",
+                      xmlns: "http://www.w3.org/2000/svg",
+                      children: /* @__PURE__ */ jsx("path", { d: "M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z" })
+                    }
+                  ) })
+                ] }),
+                /* @__PURE__ */ jsx("div", { className: "absolute bottom-0 left-0 right-0 z-20 p-8 md:p-12", children: /* @__PURE__ */ jsxs("div", { className: "flex items-start gap-6", children: [
+                  /* @__PURE__ */ jsx("div", { className: "flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-2xl overflow-hidden bg-white/10 backdrop-blur-sm border border-white/20 p-3", children: /* @__PURE__ */ jsx(
+                    "img",
+                    {
+                      src: project.icon,
+                      alt: "",
+                      className: "w-full h-full object-cover rounded-lg"
+                    }
+                  ) }),
+                  /* @__PURE__ */ jsxs("div", { className: "flex-1", children: [
+                    /* @__PURE__ */ jsx("div", { className: "inline-block px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-3", children: /* @__PURE__ */ jsx("span", { className: "text-xs font-geist font-medium text-white/70 uppercase tracking-wide", children: project.type }) }),
+                    /* @__PURE__ */ jsx("h3", { className: "text-3xl md:text-5xl font-geist font-bold text-white mb-3 tracking-tight", children: project.title }),
+                    /* @__PURE__ */ jsx("p", { className: "text-base md:text-lg font-geist text-white/80 max-w-2xl leading-relaxed", children: project.description })
+                  ] })
+                ] }) }),
+                /* @__PURE__ */ jsx("div", { className: "absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none", children: /* @__PURE__ */ jsx("div", { className: "absolute inset-0 bg-gradient-to-t from-blue-500/20 to-purple-500/10" }) })
+              ]
             }
           )
-        ]
-      }
-    ) })
-  ] }) }) });
+        },
+        `featured-${index}`
+      )) })
+    ] }) }),
+    /* @__PURE__ */ jsx("section", { id: "works", ref, className: "container md:px-0 mt-20 pb-20 relative  sm:mt-20", children: /* @__PURE__ */ jsxs("div", { className: "px-0 md:px-20", children: [
+      /* @__PURE__ */ jsxs(
+        motion.div,
+        {
+          className: "btn-title relative w-full mb-16 flex justify-start container-btn",
+          initial: { opacity: 0, x: -20 },
+          animate: inView ? { opacity: 1, x: 0 } : {},
+          transition: { duration: 0.5, ease: [0.17, 0.55, 0.55, 1] },
+          children: [
+            /* @__PURE__ */ jsx("div", { className: "framer-1u3alye" }),
+            /* @__PURE__ */ jsx(buttonSection, { title: "Works" }),
+            /* @__PURE__ */ jsx("div", { className: "framer-4ek1z5" })
+          ]
+        }
+      ),
+      /* @__PURE__ */ jsx("div", { className: "framer-1lrue9j", children: visibleProjects.map((project, index) => /* @__PURE__ */ jsx(ProjectCard, { project, index }, `work-${index}`)) }),
+      itemsToShow < dataProject.length && /* @__PURE__ */ jsx("div", { className: "text-center justify-center mt-8", children: /* @__PURE__ */ jsxs(
+        "button",
+        {
+          className: "bg-ln-gray-header uppercase shadow-ln-xs px-12 py-3 overflow-hidden  rounded-full uppercase font-geist font-bold text-[14px] relative",
+          onClick: handleLoadMore,
+          children: [
+            "Cargar más",
+            /* @__PURE__ */ jsx(
+              motion.div,
+              {
+                className: "absolute z-[9999] h-[1.5px] w-[50%] left-2/4 transform -translate-x-2/4 inset-x-1 top-[.3px] -bottom-px bg-gradient-to-r from-[#EDD4BA]/0 via-[#EDD4BA]/40 to-[#EDD4BA]/0",
+                style: { top: "auto", bottom: "0px" },
+                initial: { opacity: 0, width: "0%" },
+                animate: { opacity: 1, width: "50%" },
+                exit: { opacity: 0, width: "0%" },
+                transition: { duration: 3.2, ease: "easeInOut" }
+              }
+            )
+          ]
+        }
+      ) })
+    ] }) })
+  ] });
 }
 function App() {
   return /* @__PURE__ */ jsx(Fragment, { children: /* @__PURE__ */ jsxs("div", { className: "relative isolate flex min-h-screen flex-col bg-ln-gray-25 ", children: [
+    /* @__PURE__ */ jsx("div", { className: "z-[9999] relative md:hidden", children: /* @__PURE__ */ jsx(MeteorHamburger, {}) }),
     /* @__PURE__ */ jsx("div", { className: "pt-10 absolute top-0 left-0 h-screen w-full", children: /* @__PURE__ */ jsx(AsteroidMotion, {}) }),
     /* @__PURE__ */ jsx(HeaderUser, {}),
     /* @__PURE__ */ jsx(LineAbsolute, {}),
